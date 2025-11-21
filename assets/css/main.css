@@ -440,7 +440,7 @@ h6 {
   }
 
   .navmenu ul {
-    display: none;
+    display: none !important;
     list-style: none;
     position: absolute;
     inset: 60px 20px 20px 20px;
@@ -1651,6 +1651,80 @@ section,
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+/* === FORCE MOBILE MENU VISIBLE FIX === */
+body.mobile-nav-active #navmenu ul {
+  display: block !important;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  padding: 20px 0;
+  margin: 0;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 99999;
+}
+
+body.mobile-nav-active #navmenu ul li a {
+  color: #000 !important;
+  font-size: 18px;
+  padding: 12px 0;
+  display: block;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+body.mobile-nav-active #navmenu ul li a:hover {
+  color: #d32f2f !important;
+}
+/* Force logo to be larger */
+.header .logo img {
+  height: 130px !important;
+  max-height: 130px !important;
+}
+/* Sign In button color */
+.btn-getstarted {
+  background: #0a7f29 !important;
+  border-color: #0a7f29 !important;
+}
+
+.btn-getstarted:hover {
+  background: #06581d !important; /* darker green on hover */
+  border-color: #06581d !important;
+}
+
+.navmenu ul li a.active::after {
+  background-color: #0a7f29 !important;
+}
+/* Change the active underline (nav link) to green */
+.navmenu a.active::after,
+.navmenu a:hover::after {
+  background-color: #0a7f29 !important; /* IPY FC green */
+}
+.navmenu a.active,
+.navmenu a:hover {
+  color: #0a7f29 !important;
+  border-color: #0a7f29 !important;
+}
+/* Remove red underline and set new green underline */
+.navmenu ul li a::after {
+  background-color: #0a7f29 !important;
+}
+
+/* Also override border styles if used */
+.navmenu ul li a {
+  border-color: #0a7f29 !important;
+}
+
+/* Active & hover color update */
+:root {
+  --nav-hover-color: #0a7f29 !important;
+  --nav-dropdown-hover-color: #0a7f29 !important;
+  --nav-link-color: #0a7f29 !important;
+  --nav-active-link-color: #0a7f29 !important;
+}
+.navmenu a::after {
+  background-color: #0a7f29 !important;
 }

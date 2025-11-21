@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Fixtures & Results | IPY FC</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/IPYlogo.jpg" rel="icon">
+  <link href="assets/img/IPYlogo.jpg" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" style="height:130px;">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="fixtures.html" class="active">Fixtures</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div class="dropdown">
+        <a class="btn-getstarted dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          Sign In
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="login.html">Login</a></li>
+          <li><a class="dropdown-item" href="register.html">Create Account</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Fixtures Hero Section -->
+    <section class="py-5 text-center bg-light">
+      <div class="container">
+        <h1 data-aos="fade-down">Fixtures & Results</h1>
+        <p class="lead" data-aos="fade-up">Check upcoming matches, past results, and league standings.</p>
+      </div>
+    </section>
+
+    <!-- Upcoming Match -->
+    <section class="upcoming-fixture py-5">
+      <div class="container">
+        <h2 class="text-center mb-4">Next Fixture</h2>
+        <div class="card shadow mx-auto" style="max-width:600px;" data-aos="zoom-in">
+          <div class="card-body text-center">
+            <h4 class="fw-bold">IPY FC vs TBA</h4>
+            <p class="mb-1"><strong>Date:</strong> Coming Soon</p>
+            <p class="mb-3"><strong>Venue:</strong> To Be Confirmed</p>
+            <a href="#full-fixtures" class="btn btn-outline-success">View Full Fixtures</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Fixtures Table -->
+   <div class="table-responsive" data-aos="fade-up">
+  <table class="table table-striped text-center">
+    <thead class="table-dark">
+      <tr>
+        <th>Date</th>
+        <th>Opponent</th>
+        <th>Venue</th>
+        <th>Kick-Off</th>
+      </tr>
+    </thead>
+    <tbody id="fixturesTableBody">
+      <!-- Dynamic rows inserted by JS -->
+    </tbody>
+  </table>
+</div>
+
+
+    <!-- League Table -->
+   <section id="league-table" class="container mt-5">
+  <h3 class="text-center mb-3">League Table</h3>
+
+  <table class="table table-striped text-center">
+    <thead class="table-success">
+      <tr>
+        <th>#</th>
+        <th>Team</th>
+        <th>MP</th>
+        <th>W</th>
+        <th>D</th>
+        <th>L</th>
+        <th>PTS</th>
+      </tr>
+    </thead>
+    <tbody id="leagueTableBody"></tbody>
+  </table>
+</section>
+
+
+  </main>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <!-- JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+  async function loadFixtures() {
+    try {
+      const response = await fetch('http://localhost:5001/api/fixtures');
+      const fixtures = await response.json();
+
+      const tableBody = document.getElementById("fixturesTableBody");
+      tableBody.innerHTML = "";
+
+      fixtures.forEach(fx => {
+        const row = `
+          <tr>
+            <td>${new Date(fx.date).toLocaleDateString()}</td>
+            <td>${fx.opponent}</td>
+            <td>${fx.venue}</td>
+            <td>${fx.kickOff || '-'}</td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+    } catch (error) {
+      console.error("Error loading fixtures:", error);
+    }
+  }
+
+  loadFixtures();
+</script>
+
+<script>
+  async function loadLeague() {
+    try {
+      const res = await fetch("http://localhost:5001/api/league");
+      const table = await res.json();
+
+      const tbody = document.getElementById("leagueTableBody");
+      tbody.innerHTML = "";
+
+      table.sort((a, b) => b.pts - a.pts);
+
+      table.forEach((team, index) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${team.team}</td>
+            <td>${team.mp}</td>
+            <td>${team.w}</td>
+            <td>${team.d}</td>
+            <td>${team.l}</td>
+            <td><strong>${team.pts}</strong></td>
+          </tr>
+        `;
+      });
+    } catch (err) {
+      console.error("Error loading league:", err);
+    }
+  }
+
+  loadLeague();
+</script>
+
+</body>
+</html>
