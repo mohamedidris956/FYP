@@ -23,37 +23,33 @@
 
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container d-flex align-items-center justify-content-between">
+  <div class="container d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" style="height:130px;">
-      </a>
+    <!-- Logo -->
+    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" class="img-fluid" style="height: 130px;">
+    </a>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="fixtures.html">Fixtures</a></li>
-          <li><a href="media.html" class="active">Media</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="news.html">News</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
+    <!-- Navbar -->
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="fixtures.html">Fixtures</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
 
-      <div class="dropdown">
-        <a class="btn-getstarted dropdown-toggle" href="#" data-bs-toggle="dropdown">
-          Sign In
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="login.html">Login</a></li>
-          <li><a class="dropdown-item" href="register.html">Create Account</a></li>
-        </ul>
-      </div>
+    <!-- Auth Display (Sign In OR Welcome + Logout) -->
+    <div id="authArea" class="d-flex align-items-center"></div>
 
-    </div>
-  </header>
+  </div>
+</header>
+
 
   <main class="main">
 
@@ -129,6 +125,38 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/js/main.js"></script>
+  <!-- Auth UI Script -->
+<script src="assets/js/authNav.js"></script>
+</body>
+</html>
+
+<script>
+const token = localStorage.getItem("token");
+const userName = localStorage.getItem("userName");
+
+const signInBtn = document.getElementById("signinDropdown");
+const userDisplay = document.getElementById("userDisplay");
+const logoutBtn = document.getElementById("logoutBtn");
+
+// Only update if elements exist
+if (token && userName) {
+  if (signInBtn) signInBtn.style.display = "none";
+  if (userDisplay) userDisplay.textContent = `Welcome, ${userName}`;
+  if (logoutBtn) logoutBtn.style.display = "inline-block";
+} else {
+  if (logoutBtn) logoutBtn.style.display = "none";
+  if (userDisplay) userDisplay.textContent = "";
+}
+
+// Logout function
+function logoutUser() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("userName");
+  localStorage.removeItem("userRole");
+  window.location.reload();
+}
+</script>
+
 
 </body>
 </html>

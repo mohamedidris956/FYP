@@ -23,37 +23,33 @@
 
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container d-flex align-items-center justify-content-between">
+  <div class="container d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" style="height:130px;">
-      </a>
+    <!-- Logo -->
+    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" class="img-fluid" style="height: 130px;">
+    </a>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop</a></li>
-          <li><a href="fixtures.html" class="active">Fixtures</a></li>
-          <li><a href="media.html">Media</a></li>
-          <li><a href="team.html">Team</a></li>
-          <li><a href="news.html">News</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
+    <!-- Navbar -->
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="fixtures.html">Fixtures</a></li>
+        <li><a href="media.html">Media</a></li>
+        <li><a href="team.html">Team</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
 
-      <div class="dropdown">
-        <a class="btn-getstarted dropdown-toggle" href="#" data-bs-toggle="dropdown">
-          Sign In
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end">
-          <li><a class="dropdown-item" href="login.html">Login</a></li>
-          <li><a class="dropdown-item" href="register.html">Create Account</a></li>
-        </ul>
-      </div>
+    <!-- Auth Display (Sign In OR Welcome + Logout) -->
+    <div id="authArea" class="d-flex align-items-center"></div>
 
-    </div>
-  </header>
+  </div>
+</header>
+
 
   <main class="main">
 
@@ -66,19 +62,21 @@
     </section>
 
     <!-- Upcoming Match -->
-    <section class="upcoming-fixture py-5">
-      <div class="container">
-        <h2 class="text-center mb-4">Next Fixture</h2>
-        <div class="card shadow mx-auto" style="max-width:600px;" data-aos="zoom-in">
-          <div class="card-body text-center">
-            <h4 class="fw-bold">IPY FC vs TBA</h4>
-            <p class="mb-1"><strong>Date:</strong> Coming Soon</p>
-            <p class="mb-3"><strong>Venue:</strong> To Be Confirmed</p>
-            <a href="#full-fixtures" class="btn btn-outline-success">View Full Fixtures</a>
-          </div>
-        </div>
-      </div>
-    </section>
+   <!-- Upcoming Match -->
+<section class="upcoming-fixture py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Next Fixture</h2>
+    <div class="card shadow mx-auto" style="max-width:600px;" data-aos="zoom-in">
+      <div class="card-body text-center">
+  <h4 id="next-opponent" class="fw-bold">IPY FC vs TBA</h4>
+  <p class="mb-1"><strong>Date:</strong> <span id="next-date">Coming Soon</span></p>
+  <p class="mb-3"><strong>Venue:</strong> <span id="next-venue">To Be Confirmed</span></p>
+  <a href="#full-fixtures" class="btn btn-outline-success">View Full Fixtures</a>
+</div>
+    </div>
+  </div>
+</section>
+
 
     <!-- Full Fixtures Table -->
    <div class="table-responsive" data-aos="fade-up">
@@ -129,34 +127,37 @@
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
 <script src="assets/js/main.js"></script>
+<!-- Auth UI Script -->
+<script src="assets/js/authNav.js"></script>
+</body>
+</html>
 
 <script>
-  async function loadFixtures() {
-    try {
-      const response = await fetch('http://localhost:5001/api/fixtures');
-      const fixtures = await response.json();
+async function loadNextFixture() {
+  try {
+    const response = await fetch('http://localhost:5001/api/fixtures');
+    const fixtures = await response.json();
 
-      const tableBody = document.getElementById("fixturesTableBody");
-      tableBody.innerHTML = "";
+    if (!fixtures.length) return;
 
-      fixtures.forEach(fx => {
-        const row = `
-          <tr>
-            <td>${new Date(fx.date).toLocaleDateString()}</td>
-            <td>${fx.opponent}</td>
-            <td>${fx.venue}</td>
-            <td>${fx.kickOff || '-'}</td>
-          </tr>
-        `;
-        tableBody.innerHTML += row;
-      });
-    } catch (error) {
-      console.error("Error loading fixtures:", error);
-    }
+    // sort by date (ascending)
+    fixtures.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    const nextGame = fixtures[0]; 
+
+    // update UI values
+    document.getElementById('next-opponent').innerText = `IPY FC vs ${nextGame.opponent}`;
+    document.getElementById('next-date').innerText = new Date(nextGame.date).toLocaleDateString();
+    document.getElementById('next-venue').innerText = nextGame.venue;
+  } catch (error) {
+    console.error("Error loading next fixture:", error);
   }
+}
 
-  loadFixtures();
+loadNextFixture();
 </script>
+
+
 
 <script>
   async function loadLeague() {
@@ -189,6 +190,33 @@
 
   loadLeague();
 </script>
+<script>
+const token = localStorage.getItem("token");
+const userName = localStorage.getItem("userName");
+
+const signInBtn = document.getElementById("signinDropdown");
+const userDisplay = document.getElementById("userDisplay");
+const logoutBtn = document.getElementById("logoutBtn");
+
+// Only update if elements exist
+if (token && userName) {
+  if (signInBtn) signInBtn.style.display = "none";
+  if (userDisplay) userDisplay.textContent = `Welcome, ${userName}`;
+  if (logoutBtn) logoutBtn.style.display = "inline-block";
+} else {
+  if (logoutBtn) logoutBtn.style.display = "none";
+  if (userDisplay) userDisplay.textContent = "";
+}
+
+// Logout function
+function logoutUser() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("userName");
+  localStorage.removeItem("userRole");
+  window.location.reload();
+}
+</script>
+
 
 </body>
 </html>

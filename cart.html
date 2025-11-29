@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Cart | IPY FC</title>
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Favicons -->
+  <link href="assets/img/IPYlogo.jpg" rel="icon">
+  <link href="assets/img/IPYlogo.jpg" rel="apple-touch-icon">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" style="height:130px;">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="fixtures.html">Fixtures</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+     <!-- Sign In + User Display -->
+<div class="d-flex align-items-center">
+
+  <!-- Show when logged out -->
+  <div class="auth-area"></div>
+
+
+  <!-- Show when logged in -->
+  <span id="userDisplay" class="fw-bold ms-3"></span>
+  <button id="logoutBtn" class="btn btn-success ms-2" style="display:none;" onclick="logoutUser()">Logout</button>
+
+
+</div>
+
+  </header>
+
+  <div class="container py-5">
+    <h2 class="text-center mb-4">My Cart</h2>
+    <table class="table table-bordered text-center" id="cartTable">
+      <thead class="table-success">
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h4 class="text-end mt-3">Total: €<span id="cartTotal">0</span></h4>
+  </div>
+
+<script src="assets/js/viewCart.js"></script>
+</body>
+</html>

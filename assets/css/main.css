@@ -666,7 +666,7 @@ h6 {
   right: 15px;
   bottom: -15px;
   z-index: 99999;
-  background-color: var(--accent-color);
+  background-color: #0a7f29 !important; /* IPY Green */
   width: 44px;
   height: 44px;
   border-radius: 50px;
@@ -675,13 +675,13 @@ h6 {
 
 .scroll-top i {
   font-size: 24px;
-  color: var(--contrast-color);
+ background-color: #0a7f29 !important; /* IPY Green */
   line-height: 0;
 }
 
 .scroll-top:hover {
-  background-color: color-mix(in srgb, var(--accent-color), transparent 20%);
-  color: var(--contrast-color);
+  background-color: #0a7f29 !important; /* IPY Green */
+  color: white !important;
 }
 
 .scroll-top.active {
@@ -1728,3 +1728,40 @@ body.mobile-nav-active #navmenu ul li a:hover {
 .navmenu a::after {
   background-color: #0a7f29 !important;
 }
+
+/* Force arrow icon to white on green background */
+.scroll-top i {
+  color: white !important;
+}
+
+/* Also change the default color when not hovering */
+#scroll-top {
+  background-color: #0a7f29 !important;  /* IPY Green */
+  color: white !important;
+}
+.nav-welcome {
+  font-weight: 400 !important; /* remove bold */
+  color: #212529 !important; /* dark text similar to menu */
+  margin-right: 10px;
+}
+.btn-logout {
+  background-color: #0a7f29 !important;  /* IPY Green */
+  color: white !important;
+  border: none !important;
+  padding: 6px 14px;
+  border-radius: 6px;
+}
+
+.btn-logout:hover {
+  background-color: #0a7f29 !important; /* darker green */
+}
+.product-card img {
+  width: 100%;
+  height: 350px;           /* Same height for all images */
+  object-fit: cover;       /* Crop to fit nicely */
+  object-position: center; /* Center the image */
+}
+#userDisplay {
+  font-weight: normal !important;
+}
+

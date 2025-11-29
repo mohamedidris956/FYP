@@ -11,20 +11,25 @@ const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
+
 // Register
 router.post('/register', async (req, res) => {
   try {
     const { name, email, password, role } = req.body;
 
-    const userExists = await User.findOne({ email });
-    if (userExists) return res.status(400).json({ message: 'User already exists' });
+    if (!name || !password) {
+      return res.status(400).json({ message: 'Username and password required' });
+    }
 
-    const hashed = await bcrypt.hash(password, 10);
+    const userExists = await User.findOne({ name });
+    if (userExists) return res.status(400).json({ message: 'Username already taken' });
+
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
       name,
-      email,
-      password: hashed,
+      email: email || '',  // optional
+      password: hashedPassword,
       role: role || 'user'
     });
 
@@ -35,22 +40,24 @@ router.post('/register', async (req, res) => {
       role: user.role,
       token: generateToken(user._id)
     });
+
+    console.log(`🟢 NEW USER REGISTERED: ${user.name}`);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 });
 
-// Login
+// Login (by username)
 router.post('/login', async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, password } = req.body;
 
-    const user = await User.findOne({ email });
-    if (!user) return res.status(400).json({ message: 'Invalid credentials' });
+    const user = await User.findOne({ name });
+    if (!user) return res.status(400).json({ message: 'Invalid username or password' });
 
     const match = await bcrypt.compare(password, user.password);
-    if (!match) return res.status(400).json({ message: 'Invalid credentials' });
+    if (!match) return res.status(400).json({ message: 'Invalid username or password' });
 
     res.json({
       _id: user._id,
@@ -59,6 +66,8 @@ router.post('/login', async (req, res) => {
       role: user.role,
       token: generateToken(user._id)
     });
+
+    console.log(`🔐 LOGIN SUCCESS: ${user.name}`);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
