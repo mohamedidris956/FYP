@@ -1765,3 +1765,55 @@ body.mobile-nav-active #navmenu ul li a:hover {
   font-weight: normal !important;
 }
 
+.media-photo {
+  width: 100%;
+  height: 350px;  /* full equal height */
+  object-fit: cover; /* auto crop nicely */
+  border-radius: 8px;
+}
+/* ============================
+   Responsive YouTube Embeds
+   ============================ */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 video ratio */
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000; /* prevents white background while loading */
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.player-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;    /* ensures perfect fit in circle */
+  border-radius: 50%;   /* makes image circular */
+  border: 3px solid #eee;
+}
+
+.player-card {
+  transition: transform 0.2s ease;
+}
+
+.player-card:hover {
+  transform: translateY(-5px);
+}
+
+/* News Images - show full image without cropping */
+.news-img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;        /* fills the box */
+  object-position: top;     /* keeps heads visible */
+  border-bottom: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+}
+

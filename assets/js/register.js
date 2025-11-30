@@ -32,6 +32,11 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
       token: data.token
     }));
 
+    // ✅ ADD THESE: match login.js format so navbar works instantly
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("userName", data.name);
+    localStorage.setItem("userRole", data.role);
+
     alert("Account created! Welcome to IPY FC!");
     window.location.href = "index.html";
 
