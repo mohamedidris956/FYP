@@ -18,7 +18,7 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
       return;
     }
 
-    // ✅ STORE ALL AUTH KEYS SEPARATELY
+    // STORE ALL AUTH KEYS SEPARATELY
     localStorage.setItem("token", data.token);      // for protected pages
     localStorage.setItem("userName", data.name);    // navbar greeting
     localStorage.setItem("userRole", data.role);    // admin features
