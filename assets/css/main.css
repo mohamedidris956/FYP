@@ -1685,15 +1685,20 @@ body.mobile-nav-active #navmenu ul li a:hover {
   max-height: 130px !important;
 }
 /* Sign In button color */
+/* Sign In button – force exact IPY green */
 .btn-getstarted {
-  background: #0a7f29 !important;
+  background-color: #0a7f29 !important;
   border-color: #0a7f29 !important;
+  color: #ffffff !important;
 }
 
 .btn-getstarted:hover {
-  background: #06581d !important; /* darker green on hover */
+  background-color: #06581d !important;
   border-color: #06581d !important;
+  color: #ffffff !important;
 }
+
+
 
 .navmenu ul li a.active::after {
   background-color: #0a7f29 !important;
@@ -1757,10 +1762,12 @@ body.mobile-nav-active #navmenu ul li a:hover {
 }
 .product-card img {
   width: 100%;
-  height: 350px;           /* Same height for all images */
-  object-fit: cover;       /* Crop to fit nicely */
-  object-position: center; /* Center the image */
+  height: 350px;
+  object-fit: contain;        /* show full image */
+  background-color: #f8f9fa; /* keeps layout clean */
+  object-position: center;
 }
+
 #userDisplay {
   font-weight: normal !important;
 }
@@ -1816,4 +1823,144 @@ body.mobile-nav-active #navmenu ul li a:hover {
   border-bottom: 1px solid #ddd;
   border-radius: 4px 4px 0 0;
 }
+/* =========================
+   Home Page Styles
+   ========================= */
 
+/* HERO SECTION */
+.home-hero {
+  background: none;
+  color: #212529;
+  padding: 120px 20px;
+}
+
+
+.home-hero h1 {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.home-hero .lead {
+  max-width: 650px;
+  margin: 0 auto 25px;
+  font-weight: 400;
+}
+
+/* GENERAL SECTION SPACING */
+.home-section {
+  padding: 80px 0;
+}
+
+.home-section h2 {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* NEXT FIXTURE */
+.fixture-info {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* MEDIA PREVIEW IMAGES */
+.home-section img {
+  border-radius: 8px;
+}
+
+/* SHOP PREVIEW */
+.home-section .img-fluid {
+  max-height: 280px;
+  object-fit: cover;
+}
+
+/* HOME PAGE BUTTONS – MATCH IPY GREEN */
+.home-hero .btn,
+.home-section .btn,
+.home-cta .btn {
+  background-color: #0a7f29;
+  border-color: #0a7f29;
+  color: white;
+}
+
+.home-hero .btn:hover,
+.home-section .btn:hover,
+.home-cta .btn:hover {
+  background-color: #06581d;
+  border-color: #06581d;
+  color: white;
+}
+
+/* CALL TO ACTION */
+.home-cta {
+  background-color: #f8f9fa;
+  color: #212529;
+  padding: 70px 20px;
+}
+
+.home-cta h2 {
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* RESPONSIVE ADJUSTMENTS */
+@media (max-width: 768px) {
+  .home-hero {
+    padding: 90px 15px;
+  }
+
+  .home-section {
+    padding: 60px 0;
+  }
+}
+/* Force btn-success to use IPY FC green */
+.btn-success {
+  --bs-btn-bg: #0a7f29;
+  --bs-btn-border-color: #0a7f29;
+  --bs-btn-hover-bg: #06581d;
+  --bs-btn-hover-border-color: #06581d;
+  --bs-btn-active-bg: #06581d;
+  --bs-btn-active-border-color: #06581d;
+}
+/* Ensure homepage news cards are equal height */
+.home-section .card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-section .card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-section .card-body .btn {
+  margin-top: auto; /* pushes button to bottom */
+}
+
+/* =========================
+   Home Page – Media Highlights
+   ========================= */
+
+.home-section .media-highlight {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #ffffff;
+  height: 100%;
+}
+
+.home-section .media-highlight img {
+  width: 100%;
+  height: 320px;
+  object-fit: contain;      /* show full image */
+  background-color: #f8f9fa; /* prevents awkward empty space */
+  border-radius: 6px;
+}
+
+
+/* Optional: subtle hover like news cards */
+.home-section .media-highlight:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transform: translateY(-3px);
+  transition: all 0.2s ease;
+}

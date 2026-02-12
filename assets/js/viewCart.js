@@ -35,3 +35,41 @@ function removeItem(index) {
 }
 
 loadCart();
+
+async function checkout() {
+  const token = localStorage.getItem('token');
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (!token || cart.length === 0) {
+    alert('You must be logged in with items in your cart.');
+    return;
+  }
+
+  try {
+    const res = await fetch('/api/checkout/create-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ cartItems: cart })
+    });
+
+    if (!res.ok) {
+      const text = await res.text();
+      throw new Error(text || 'Checkout failed');
+    }
+
+    const data = await res.json();
+
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error('No checkout URL returned');
+    }
+
+  } catch (err) {
+    console.error('❌ Checkout error:', err);
+    alert(err.message);
+  }
+}

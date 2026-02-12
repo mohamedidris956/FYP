@@ -58,12 +58,136 @@
 </header>
 
 
-  <main class="main">
-    <div class="container mt-5 text-center">
-      <h1>Welcome to IPY FC</h1>
-      <p>Your hub for fixtures, media, and fan updates.</p>
+ <main class="main">
+
+  <!-- 1️⃣ Hero Section -->
+  <section class="home-hero text-center">
+    <div class="container">
+      <h1>IPY FC – Unity, Pride, Youth</h1>
+      <p class="lead">
+        Official club website for fixtures, news, media, and merchandise
+      </p>
+      <div class="hero-buttons">
+        <a href="fixtures.html" class="btn btn-primary me-2">View Fixtures</a>
+        <a href="shop.html" class="btn btn-outline-light">Visit Shop</a>
+      </div>
     </div>
-  </main>
+  </section>
+
+  <!-- 2️⃣ Next Fixture -->
+  <section class="home-section">
+    <div class="container text-center">
+      <h2>Next Fixture</h2>
+      <p class="fixture-info">
+        IPY FC vs Example FC<br>
+        Saturday 20th April · Lucan, Dublin
+      </p>
+    </div>
+  </section>
+
+  <!-- 3️⃣ Latest News -->
+  <section class="home-section bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Latest News</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <img src="assets/img/news/news1.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Matchday Victory</h5>
+              <p class="card-text">IPY FC secure an important win at home.</p>
+              <a href="news.html" class="btn btn-sm btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="assets/img/news/news2.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Training Update</h5>
+              <p class="card-text">Midweek training session ahead of next fixture.</p>
+              <a href="news.html" class="btn btn-sm btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card">
+            <img src="assets/img/news/news3.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Club Announcement</h5>
+              <p class="card-text">Important update from IPY FC management.</p>
+              <a href="news.html" class="btn btn-sm btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <!-- 4️⃣ Media Preview -->
+<section class="home-section">
+  <div class="container text-center">
+    <h2>Media Highlights</h2>
+
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="media-highlight">
+          <img src="assets/img/media/media1.jpg" class="img-fluid" alt="">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="media-highlight">
+          <img src="assets/img/media/media2.jpg" class="img-fluid" alt="">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="media-highlight">
+          <img src="assets/img/media/media3.jpg" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+
+    <a href="media.html" class="btn btn-success mt-4">View Media Gallery</a>
+  </div>
+</section>
+
+
+  <!-- 5️⃣ Shop Preview -->
+  <section class="home-section bg-light">
+    <div class="container text-center">
+      <h2>Shop IPY FC</h2>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <img src="assets/img/home-jersey.jpg" class="img-fluid">
+          <p class="mt-2">Home Jersey – €45</p>
+        </div>
+        <div class="col-md-4">
+          <img src="assets/img/away-jersey.jpg" class="img-fluid">
+          <p class="mt-2">Away Jersey – €45</p>
+        </div>
+        <div class="col-md-4">
+          <img src="assets/img/training-jersey.jpg" class="img-fluid">
+          <p class="mt-2">Training Kit – €35</p>
+        </div>
+      </div>
+      <a href="shop.html" class="btn btn-primary mt-3">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- 6️⃣ Call to Action -->
+  <section class="home-cta text-center">
+    <div class="container">
+      <h2>Join the IPY FC Community</h2>
+      <p>Create an account to follow fixtures and shop official merchandise.</p>
+      <a href="register.html" class="btn btn-light">Create Account</a>
+    </div>
+  </section>
+
+</main>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
@@ -83,32 +207,7 @@
 </body>
 </html>
 
-<script>
-const token = localStorage.getItem("token");
-const userName = localStorage.getItem("userName");
 
-const signInBtn = document.getElementById("signinDropdown");
-const userDisplay = document.getElementById("userDisplay");
-const logoutBtn = document.getElementById("logoutBtn");
-
-// Only update if elements exist
-if (token && userName) {
-  if (signInBtn) signInBtn.style.display = "none";
-  if (userDisplay) userDisplay.textContent = `Welcome, ${userName}`;
-  if (logoutBtn) logoutBtn.style.display = "inline-block";
-} else {
-  if (logoutBtn) logoutBtn.style.display = "none";
-  if (userDisplay) userDisplay.textContent = "";
-}
-
-// Logout function
-function logoutUser() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userName");
-  localStorage.removeItem("userRole");
-  window.location.reload();
-}
-</script>
 
 
 
