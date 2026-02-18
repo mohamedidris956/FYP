@@ -2,19 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Payment Successful</title>
+  <title>Order Confirmation | IPY FC</title>
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
 </head>
-<body class="text-center py-5">
 
-  <h1>Payment Successful</h1>
-  <p>Thank you for supporting IPY FC.</p>
+<body>
 
-  <a href="index.html" class="btn btn-success mt-3">Return Home</a>
+<div class="container py-5" style="max-width:700px;">
+  <div class="card shadow-sm">
+    <div class="card-body">
 
-  <script>
-    localStorage.removeItem('cart');
-  </script>
+      <h2 class="text-success text-center mb-4">Payment Successful</h2>
+
+      <div id="orderDetails">
+        <p class="text-center">Loading order details...</p>
+      </div>
+
+      <div class="text-center mt-4">
+        <a href="index.html" class="btn btn-success">Return Home</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/success.js"></script>
 
 </body>
 </html>
