@@ -25,6 +25,7 @@
 // Mobile Navigation Toggle
 const mobileNavToggleBtn = document.querySelector(".mobile-nav-toggle");
 const body = document.querySelector("body");
+const navMenu = document.querySelector("#navmenu");
 
 if (mobileNavToggleBtn) {
   mobileNavToggleBtn.addEventListener("click", () => {
@@ -40,7 +41,7 @@ if (mobileNavToggleBtn) {
    */
   document.querySelectorAll("#navmenu a").forEach((navLink) => {
     navLink.addEventListener("click", () => {
-      if (navMenu.classList.contains("active")) {
+      if (navMenu && navMenu.classList.contains("active")) {
         navMenu.classList.remove("active");
         mobileNavToggleBtn.classList.add("bi-list");
         mobileNavToggleBtn.classList.remove("bi-x");

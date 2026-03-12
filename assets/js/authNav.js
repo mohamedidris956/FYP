@@ -4,6 +4,7 @@ function loadAuthUI() {
 
   const token = localStorage.getItem("token");
   const name = localStorage.getItem("userName");
+  const role = localStorage.getItem("userRole");
 
   // Logged OUT
   if (!token || !name) {
@@ -21,11 +22,17 @@ function loadAuthUI() {
     return;
   }
 
+  const adminBtn =
+    role === "admin"
+      ? `<a href="admin.html" class="btn btn-outline-warning mb-2">Admin Dashboard</a>`
+      : "";
+
   // Logged IN — universal stacked layout
   let html = `
     <div class="d-flex flex-column align-items-end text-end">
       <span class="mb-1">Welcome, ${name}</span>
       <button class="btn btn-success mb-2" onclick="logoutUser()">Logout</button>
+      ${adminBtn}
     </div>
   `;
 
@@ -35,6 +42,7 @@ function loadAuthUI() {
       <div class="d-flex flex-column align-items-end text-end">
         <span class="mb-1">Welcome, ${name}</span>
         <button class="btn btn-success mb-2" onclick="logoutUser()">Logout</button>
+        ${adminBtn}
         <a href="cart.html" class="btn btn-outline-success mb-2">🛒 Cart</a>
       </div>
     `;

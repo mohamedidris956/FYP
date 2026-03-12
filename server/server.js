@@ -33,6 +33,7 @@ app.use('/api/fixtures', require('./routes/fixtureRoutes'));
 app.use('/api/league', require('./routes/leagueRoutes'));
 app.use('/api/checkout', require('./routes/checkoutRoutes'));
 app.use("/api/team", require("./routes/teamRoutes"));
+app.use('/api/products', require('./routes/productRoutes'));
 
 
 

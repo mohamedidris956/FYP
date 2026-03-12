@@ -61,28 +61,51 @@
  <main class="main">
 
   <!-- 1️⃣ Hero Section -->
-  <section class="home-hero text-center">
-    <div class="container">
-      <h1>IPY FC – Unity, Pride, Youth</h1>
-      <p class="lead">
-        Official club website for fixtures, news, media, and merchandise
-      </p>
-      <div class="hero-buttons">
-        <a href="fixtures.html" class="btn btn-primary me-2">View Fixtures</a>
-        <a href="shop.html" class="btn btn-outline-light">Visit Shop</a>
-      </div>
+<section class="home-hero text-center d-flex align-items-center">
+  <div class="container position-relative">
+    <h1 data-aos="fade-up">IPY FC – Unity, Pride, Youth</h1>
+    <p class="lead mt-3" data-aos="fade-up" data-aos-delay="200">
+      Official club website for fixtures, news, media, and merchandise
+    </p>
+    <div class="hero-buttons mt-4" data-aos="fade-up" data-aos-delay="400">
+      <a href="fixtures.html" class="btn btn-success me-2">View Fixtures</a>
+      <a href="shop.html" class="btn btn-outline-light">Visit Shop</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- 2️⃣ Next Fixture -->
   <section class="home-section">
-    <div class="container text-center">
-      <h2>Next Fixture</h2>
-      <p class="fixture-info">
-        IPY FC vs Example FC<br>
-        Saturday 20th April · Lucan, Dublin
-      </p>
+    <div class="container">
+  <h2 class="text-center mb-5">Next Fixture</h2>
+
+  <div class="fixture-card mx-auto text-center">
+
+    <div class="fixture-teams">
+      <div class="team">
+        <img src="assets/img/IPYlogo.jpg" alt="IPY FC">
+        <span>IPY FC</span>
+      </div>
+
+      <div class="vs">VS</div>
+
+      <div class="team">
+        <img src="assets/img/IPYlogo.jpg" alt="Opponent">
+        <span>Example FC</span>
+      </div>
     </div>
+
+    <div class="fixture-details mt-4">
+      <p class="mb-1"><strong>Saturday 20th April</strong></p>
+      <p class="text-muted">Lucan, Dublin</p>
+    </div>
+
+    <a href="fixtures.html" class="btn btn-success mt-3">
+      View Full Fixtures
+    </a>
+
+  </div>
+</div>
   </section>
 
   <!-- 3️⃣ Latest News -->
