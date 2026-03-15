@@ -15,22 +15,39 @@ const generateToken = (id) => {
 // Register
 router.post('/register', async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
-    if (!name || !password) {
-      return res.status(400).json({ message: 'Username and password required' });
+    // 1) required fields
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: 'Username, email, and password are required' });
     }
 
+    // 2) email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: 'Please enter a valid email address' });
+    }
+
+    // 3) username uniqueness
     const userExists = await User.findOne({ name });
-    if (userExists) return res.status(400).json({ message: 'Username already taken' });
+    if (userExists) {
+      return res.status(400).json({ message: 'Username already taken' });
+    }
+
+    // 4) email uniqueness
+    const emailExists = await User.findOne({ email });
+    if (emailExists) {
+      return res.status(400).json({ message: 'Email already registered' });
+    }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // 5) force safe default role
     const user = await User.create({
       name,
-      email: email || '',  // optional
+      email,
       password: hashedPassword,
-      role: role || 'user'
+      role: 'user'
     });
 
     res.status(201).json({
@@ -43,6 +60,11 @@ router.post('/register', async (req, res) => {
 
     console.log(`🟢 NEW USER REGISTERED: ${user.name}`);
   } catch (err) {
+    // 6) duplicate key fallback (extra safety)
+    if (err.code === 11000) {
+      return res.status(400).json({ message: 'Username or email already exists' });
+    }
+
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
