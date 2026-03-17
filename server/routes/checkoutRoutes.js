@@ -14,6 +14,20 @@ router.post('/create-session', protect, async (req, res) => {
   try {
     const { cartItems } = req.body;
 
+    if (!Array.isArray(cartItems) || cartItems.length === 0) {
+  return res.status(400).json({ message: 'Cart is empty' });
+}
+
+const invalidItem = cartItems.find(item => {
+  const validName = typeof item.name === 'string' && item.name.trim().length > 0;
+  const validPrice = Number.isFinite(Number(item.price)) && Number(item.price) > 0;
+  return !validName || !validPrice;
+});
+
+if (invalidItem) {
+  return res.status(400).json({ message: 'Invalid cart item data' });
+}
+
     if (!cartItems || cartItems.length === 0) {
       return res.status(400).json({ message: 'Cart is empty' });
     }
@@ -58,15 +72,16 @@ router.post('/webhook', async (req, res) => {
 
   let event;
 
-  try {
+    try {
     event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
   } catch (err) {
-    console.log('⚠️ Webhook signature verification failed.');
-    return res.sendStatus(400);
+    console.log('⚠️ Webhook signature verification failed:', err.message);
+    return res.status(400).json({ message: `Webhook Error: ${err.message}` });
   }
 
-  if (event.type === 'checkout.session.completed') {
+    if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
+    console.log('✅ Webhook checkout.session.completed for session:', session.id);
 
     const cartItems = JSON.parse(session.metadata.cart);
 
@@ -79,10 +94,9 @@ router.post('/webhook', async (req, res) => {
     });
 
     await newOrder.save();
-
-    console.log('Order saved to database');
+    console.log('✅ Order saved to database:', session.id);
   }
-
+  
   res.json({ received: true });
 });
 // =======================

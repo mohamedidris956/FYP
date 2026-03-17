@@ -14,13 +14,16 @@ const generateToken = (id) => {
 
 const handleValidation = (req, res) => {
   const errors = validationResult(req);
+
   if (!errors.isEmpty()) {
-    res.status(400).json({
-      message: 'Validation failed',
-      errors: errors.array().map(e => e.msg)
+    const messages = errors.array().map((e) => e.msg);
+
+    return res.status(400).json({
+      message: messages[0] || 'Validation failed', // first specific message
+      errors: messages // keep full list if you need it
     });
-    return true;
   }
+
   return false;
 };
 

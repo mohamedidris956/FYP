@@ -5,6 +5,7 @@ const path = require('path');
 const connectDB = require('./config/db');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 dotenv.config();
 
@@ -14,7 +15,7 @@ const app = express();
 connectDB();
 
 // Basic hardening headers
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 
 // Hide express signature
 app.disable('x-powered-by');
@@ -85,7 +86,14 @@ app.use('/api/checkout', require('./routes/checkoutRoutes'));
 app.use("/api/team", require("./routes/teamRoutes"));
 app.use('/api/products', require('./routes/productRoutes'));
 
-
+//health
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString()
+  });
+});
 
 // =======================
 // Serve Frontend Files
@@ -97,6 +105,8 @@ app.use(express.static(path.join(__dirname, '..')));
 // =======================
 // Start Server
 // =======================
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

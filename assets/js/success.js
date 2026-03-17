@@ -1,4 +1,5 @@
-async function loadOrder(retries = 5) {
+const API_BASE_URL = "http://localhost:5001";
+async function loadOrder(retries = 12) {
   const token = localStorage.getItem('token');
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -11,25 +12,33 @@ async function loadOrder(retries = 5) {
   }
 
   try {
-    const res = await fetch(`/api/checkout/order/${sessionId}`, {
+    const res = await fetch(`${API_BASE_URL}/api/checkout/order/${sessionId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
 
     if (!res.ok) {
-      if (retries > 0) {
-        console.log("Order not ready, retrying...");
-        setTimeout(() => loadOrder(retries - 1), 1000);
+      let errorData = {};
+      try {
+        errorData = await res.json();
+      } catch (_) {
+        // ignore json parse errors
+      }
+
+      // 404 usually means webhook has not saved order yet
+      if (res.status === 404 && retries > 0) {
+        console.log('Order not ready, retrying...');
+        setTimeout(() => loadOrder(retries - 1), 1500);
         return;
       }
-      throw new Error('Order not found');
+
+      throw new Error(errorData.message || `Order fetch failed (${res.status})`);
     }
 
     const order = await res.json();
 
     let itemsHtml = '';
-
     order.items.forEach(item => {
       itemsHtml += `
         <tr>
@@ -64,7 +73,7 @@ async function loadOrder(retries = 5) {
   } catch (err) {
     console.error(err);
     document.getElementById('orderDetails').innerHTML =
-      '<p class="text-danger text-center">Unable to load order details.</p>';
+      `<p class="text-danger text-center">${err.message || 'Unable to load order details.'}</p>`;
   }
 }
 

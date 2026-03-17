@@ -270,7 +270,7 @@ submitBtn.addEventListener("click", async () => {
   const formation = formationSelect.value;
 
   try {
-    const res = await fetch("/api/team/starting11", {
+    const res = await fetch(`${API_BASE_URL}/api/team/starting11`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
