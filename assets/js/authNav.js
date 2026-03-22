@@ -24,7 +24,10 @@ function loadAuthUI() {
 
   const adminBtn =
     role === "admin"
-      ? `<a href="admin.html" class="btn btn-outline-warning mb-2">Admin Dashboard</a>`
+      ? `
+        <a href="admin.html" class="btn btn-outline-warning mb-2">Admin Dashboard</a>
+        <a href="fanhub-admin.html" class="btn btn-outline-danger mb-2">Fan Hub Admin</a>
+      `
       : "";
 
   // Logged IN — universal stacked layout
@@ -55,6 +58,7 @@ function logoutUser() {
   localStorage.removeItem("token");
   localStorage.removeItem("userName");
   localStorage.removeItem("userRole");
+  localStorage.removeItem("cart");
   window.location.reload();
 }
 

@@ -2164,3 +2164,397 @@ body.mobile-nav-active #navmenu ul li a:hover {
   background: #0a7f29;
   margin: 10px auto 0;
 }
+
+/* ===== Fan Hub Modern UI ===== */
+.fanhub-page {
+  max-width: 980px;
+  margin-top: 0;
+  padding-top: 8px !important;
+}
+
+.fanhub-shell {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+/* Keep card aligned with no extra top gap */
+.fanhub-shell {
+  margin-top: 0;
+}
+
+/* Sticky top INSIDE chat card only (not offset by site header) */
+.fanhub-top-sticky {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: #fff;
+  border-bottom: 1px solid #eef1f4;
+}
+
+.fanhub-header {
+  padding: 20px 22px;
+  border-bottom: 1px solid #eef1f4;
+  background: linear-gradient(180deg, #f9fbfc 0%, #ffffff 100%);
+}
+
+.fanhub-title {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #101828;
+}
+
+.fanhub-subtitle {
+  font-size: 0.92rem;
+  color: #667085;
+}
+
+.fanhub-live-pill {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #0f766e;
+  background: #ecfdf3;
+  border: 1px solid #a6f4c5;
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+/* Make chat box less tall and more balanced */
+.fanhub-messages {
+  height: 52vh;
+  max-height: 430px;
+  min-height: 260px;
+  overflow-y: auto;
+}
+
+.fanhub-msg {
+  max-width: 78%;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e8edf2;
+}
+
+.fanhub-msg.own {
+  margin-left: auto;
+  background: #e9f7ef;
+  border-color: #bfe7cb;
+}
+
+.fanhub-msg-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.fanhub-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #0f172a;
+}
+
+.fanhub-time {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.fanhub-text {
+  color: #111827;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.fanhub-composer {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  border-top: 1px solid #eef1f4;
+  background: #fff;
+  position: sticky;
+  bottom: 0;
+}
+
+.fanhub-input {
+  flex: 1;
+  border: 1px solid #d0d7de;
+  border-radius: 12px;
+  padding: 11px 14px;
+  outline: none;
+}
+
+.fanhub-input:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.12);
+}
+
+.fanhub-send-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 0 16px;
+  background: #16a34a;
+  color: #fff;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fanhub-send-btn:hover {
+  background: #15803d;
+}
+
+.fanhub-error {
+  display: block;
+  color: #b42318;
+  padding: 0 16px 12px;
+  min-height: 18px;
+  font-size: 0.83rem;
+}
+
+@media (max-width: 768px) {
+  .fanhub-messages {
+    height: 60vh;
+    padding: 12px;
+  }
+
+  .fanhub-msg {
+    max-width: 92%;
+  }
+
+  .fanhub-send-btn span {
+    display: none;
+  }
+}
+/* Club crest watermark in chat area */
+.fanhub-messages {
+  position: relative;
+  isolation: isolate; /* keeps pseudo-element behind chat bubbles */
+}
+
+.fanhub-messages::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../img/IPYlogo.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 260px;
+  opacity: 0.05;           /* increase to 0.08 if too faint */
+  pointer-events: none;
+  z-index: 0;
+  filter: grayscale(20%);
+}
+
+/* Keep actual messages above watermark */
+.fanhub-messages > * {
+  position: relative;
+  z-index: 1;
+}
+/* ===== Theme toggle button ===== */
+.fanhub-theme-btn {
+  border: 1px solid #d0d7de;
+  background: #fff;
+  color: #0f172a;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.fanhub-theme-btn:hover {
+  background: #f8fafc;
+}
+
+/* Typing indicator */
+.fanhub-typing {
+  min-height: 22px;
+  padding: 0 16px 8px;
+  font-size: 0.83rem;
+  color: #64748b;
+}
+
+/* Smooth message appearance */
+.fanhub-msg {
+  animation: fanhubFadeIn 0.18s ease-out;
+}
+
+@keyframes fanhubFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Dark Mode ===== */
+body.theme-dark {
+  background: #0b1220;
+  color: #e5e7eb;
+}
+
+body.theme-dark .fanhub-shell {
+  background: #111827;
+  border-color: #1f2937;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+body.theme-dark .fanhub-header {
+  background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+  border-bottom-color: #1f2937;
+}
+
+body.theme-dark .fanhub-title {
+  color: #f3f4f6;
+}
+
+body.theme-dark .fanhub-subtitle,
+body.theme-dark .fanhub-time,
+body.theme-dark .fanhub-typing {
+  color: #94a3b8;
+}
+
+body.theme-dark .fanhub-messages {
+  background: #0f172a;
+}
+
+body.theme-dark .fanhub-msg {
+  background: #111827;
+  border-color: #243041;
+}
+
+body.theme-dark .fanhub-msg.own {
+  background: #12301f;
+  border-color: #1f6a40;
+}
+
+body.theme-dark .fanhub-name,
+body.theme-dark .fanhub-text {
+  color: #e5e7eb;
+}
+
+body.theme-dark .fanhub-composer {
+  background: #111827;
+  border-top-color: #1f2937;
+}
+
+body.theme-dark .fanhub-input {
+  background: #0f172a;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+
+body.theme-dark .fanhub-input::placeholder {
+  color: #64748b;
+}
+
+body.theme-dark .fanhub-theme-btn {
+  background: #0f172a;
+  color: #e5e7eb;
+  border-color: #334155;
+}
+.react-btn {
+  border-radius: 999px;
+  font-weight: 600;
+  border: 1px solid #d0d7de;
+}
+
+.react-btn:hover {
+  transform: translateY(-1px);
+}
+.fanhub-pinned-banner {
+  margin: 12px 16px 0;
+  padding: 10px 12px;
+  border: 1px solid #facc15;
+  background: #fffbeb;
+  color: #713f12;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Keep top fanhub area fixed while chat scrolls */
+.fanhub-top-sticky {
+  position: sticky;
+  top: calc(var(--site-header-h, 110px) + 8px); /* key fix */
+  z-index: 15;
+  background: #fff;
+  border-bottom: 1px solid #eef1f4;
+}
+
+/* Remove extra margin from pinned bar when inside sticky container */
+.fanhub-pinned-banner {
+  margin: 0 16px 10px;
+}
+
+/* Chat area should be the scrolling part */
+.fanhub-messages {
+  height: 480px;
+  overflow-y: auto;
+}
+
+/* Dark mode sticky bg */
+body.theme-dark .fanhub-top-sticky {
+  background: #111827;
+  border-bottom-color: #1f2937;
+}
+
+/* ===== Fan Hub: lock page scroll, only chat scroll ===== */
+html, body {
+  height: 100% !important;
+}
+
+body.fanhub-lock {
+  overflow: hidden !important; /* no page scroll */
+}
+
+/* main area fills viewport minus header */
+body.fanhub-lock .fanhub-page {
+  height: calc(100vh - var(--site-header-h, 120px)) !important;
+  max-height: calc(100vh - var(--site-header-h, 120px)) !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  margin-top: 0 !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+/* chat card fills full available height */
+body.fanhub-lock .fanhub-shell {
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  overflow: hidden !important;
+}
+
+/* remove the big blank gap issue */
+body.fanhub-lock .fanhub-top-sticky {
+  position: relative !important; /* no sticky offset gap */
+  top: 0 !important;
+  z-index: 2 !important;
+  margin: 0 !important;
+}
+
+/* only this area should scroll */
+body.fanhub-lock .fanhub-messages {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  height: auto !important;      /* override fixed vh heights */
+  max-height: none !important;
+}
+
+/* keep composer always visible */
+body.fanhub-lock .fanhub-composer {
+  flex-shrink: 0 !important;
+}

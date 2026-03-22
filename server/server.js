@@ -2,9 +2,11 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const path = require('path');
+const http = require('http'); // NEW
 const connectDB = require('./config/db');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
+const initSocket = require('./socket'); // NEW
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 
 dotenv.config();
@@ -74,7 +76,6 @@ app.use('/api/checkout/webhook', express.raw({ type: 'application/json' }));
 // Normal JSON parsing for all other routes
 app.use(express.json());
 
-
 // =======================
 // API Routes
 // =======================
@@ -85,6 +86,7 @@ app.use('/api/league', require('./routes/leagueRoutes'));
 app.use('/api/checkout', require('./routes/checkoutRoutes'));
 app.use("/api/team", require("./routes/teamRoutes"));
 app.use('/api/products', require('./routes/productRoutes'));
+app.use('/api/fanhub', require('./routes/fanHubRoutes'));
 
 //health
 app.get('/health', (req, res) => {
@@ -101,13 +103,19 @@ app.get('/health', (req, res) => {
 
 app.use(express.static(path.join(__dirname, '..')));
 
-
 // =======================
-// Start Server
+// Error handlers
 // =======================
 app.use(notFound);
 app.use(errorHandler);
 
+// =======================
+// Start HTTP + Socket.IO
+// =======================
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const server = http.createServer(app); // NEW
+const io = initSocket(server);         // NEW
+app.set("io", io);                     // optional, useful if routes ever emit events
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`)); // NEW

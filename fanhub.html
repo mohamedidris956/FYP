@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fan Hub - IPY FC</title>
+
+  <link href="assets/img/IPYlogo.jpg" rel="icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+<body class="fanhub-lock">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" class="img-fluid" style="height: 100px;">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="fixtures.html">Fixtures</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="fanhub.html" class="active">Fan Hub</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div id="authArea" class="d-flex align-items-center"></div>
+    </div>
+  </header>
+
+  <main class="fanhub-page container py-2">
+    <div class="fanhub-shell mx-auto">
+
+      <!-- Top sticky area -->
+      <div class="fanhub-top-sticky">
+        <div class="fanhub-header d-flex justify-content-between align-items-center">
+          <div>
+            <h1 class="fanhub-title mb-1">Fan Hub</h1>
+            <p class="fanhub-subtitle mb-0">Live supporter chat • Respect the community rules</p>
+          </div>
+
+          <div class="d-flex align-items-center gap-2">
+            <span class="fanhub-live-pill">● Live</span>
+            <button id="themeToggleBtn" class="fanhub-theme-btn" type="button">🌙 Dark</button>
+          </div>
+        </div>
+
+        <div id="pinnedAnnouncement" class="fanhub-pinned-banner d-none"></div>
+      </div>
+
+      <!-- Scrollable chat list -->
+      <div id="chatMessages" class="fanhub-messages"></div>
+
+      <!-- Typing indicator -->
+      <div id="typingIndicator" class="fanhub-typing"></div>
+
+      <!-- Composer -->
+      <form id="chatForm" class="fanhub-composer">
+        <input
+          id="chatInput"
+          class="fanhub-input"
+          maxlength="300"
+          placeholder="Type your message..."
+          required
+        />
+        <button class="fanhub-send-btn" type="submit">
+          <i class="bi bi-send-fill"></i>
+          <span>Send</span>
+        </button>
+      </form>
+
+      <small id="chatError" class="fanhub-error"></small>
+    </div>
+  </main>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/authNav.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="assets/js/fanHub.js"></script>
+</body>
+</html>
