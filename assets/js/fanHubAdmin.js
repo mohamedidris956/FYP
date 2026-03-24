@@ -9,6 +9,19 @@ const exportBtn = document.getElementById("exportLogsBtn");
 if (!token) window.location.href = "login.html";
 if (role !== "admin") window.location.href = "index.html";
 
+if (!bodyEl || !errorEl) {
+  console.error("Fan Hub admin elements not found on page.");
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function fmtDate(value) {
   if (!value) return "-";
   const d = new Date(value);
@@ -37,9 +50,9 @@ function renderUsers(users) {
 
     return `
       <tr>
-        <td>${u.name}</td>
-        <td>${u.email}</td>
-        <td>${u.role}</td>
+        <td>${escapeHtml(u.name)}</td>
+        <td>${escapeHtml(u.email)}</td>
+        <td>${escapeHtml(u.role)}</td>
         <td>${fmtDate(u.mutedUntil)}</td>
         <td>${muteBtn}</td>
       </tr>
@@ -100,19 +113,19 @@ function renderLogs(logs) {
 
   logsEl.innerHTML = logs.map((log) => {
     const when = new Date(log.createdAt).toLocaleString();
-    const actor = log.actor?.name || "Unknown";
-    const target = log.target?.name || "Unknown";
+    const actor = escapeHtml(log.actor?.name || "Unknown");
+    const target = escapeHtml(log.target?.name || "Unknown");
     const mins = log.minutes ?? "-";
     const reason = log.reason ? log.reason : "-";
 
     return `
       <tr>
         <td>${when}</td>
-        <td>${log.action}</td>
+        <td>${escapeHtml(log.action)}</td>
         <td>${actor}</td>
         <td>${target}</td>
         <td>${mins}</td>
-        <td>${reason}</td>
+        <td>${escapeHtml(reason)}</td>
       </tr>
     `;
   }).join("");
@@ -150,26 +163,30 @@ if (exportBtn) {
   exportBtn.addEventListener("click", exportLogsCSV);
 }
 
-bodyEl.addEventListener("click", async (e) => {
-  const muteBtn = e.target.closest(".mute-btn");
-  const unmuteBtn = e.target.closest(".unmute-btn");
+if (bodyEl) {
+  bodyEl.addEventListener("click", async (e) => {
+    const muteBtn = e.target.closest(".mute-btn");
+    const unmuteBtn = e.target.closest(".unmute-btn");
 
-  try {
-   if (muteBtn) {
-  const reason = prompt("Reason for mute (optional):", "") || "";
-  await muteUser(muteBtn.dataset.id, 10, reason);
-  await refresh();
-  return;
+    try {
+      if (muteBtn) {
+        const reason = prompt("Reason for mute (optional):", "") || "";
+        await muteUser(muteBtn.dataset.id, 10, reason);
+        await refresh();
+        return;
+      }
+      if (unmuteBtn) {
+        const reason = prompt("Reason for unmute (optional):", "") || "";
+        await unmuteUser(unmuteBtn.dataset.id, reason);
+        await refresh();
+        return;
+      }
+    } catch (err) {
+      errorEl.textContent = err.message;
+    }
+  });
 }
-    if (unmuteBtn) {
-  const reason = prompt("Reason for unmute (optional):", "") || "";
-  await unmuteUser(unmuteBtn.dataset.id, reason);
-  await refresh();
-  return;
-}
-  } catch (err) {
-    errorEl.textContent = err.message;
-  }
-});
 
-refresh();
+if (bodyEl && errorEl) {
+  refresh();
+}

@@ -23,34 +23,33 @@
 
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center sticky-top">
-  <div class="container d-flex align-items-center justify-content-between">
+    <div class="container d-flex align-items-center justify-content-between">
 
-    <!-- Logo -->
-    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-      <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" class="img-fluid" style="height: 130px;">
-    </a>
+      <!-- Logo -->
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" class="img-fluid" style="height: 130px;">
+      </a>
 
-    <!-- Navbar -->
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="fixtures.html">Fixtures</a></li>
-        <li><a href="media.html">Media</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="fanhub.html">Fan Hub</a></li>
-      </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-    </nav>
+      <!-- Navbar -->
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="fixtures.html" class="active">Fixtures</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="fanhub.html">Fan Hub</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
 
-    <!-- Auth Display (Sign In OR Welcome + Logout) -->
-    <div id="authArea" class="d-flex align-items-center"></div>
+      <!-- Auth Display (Sign In OR Welcome + Logout) -->
+      <div id="authArea" class="d-flex align-items-center"></div>
 
-  </div>
-</header>
-
+    </div>
+  </header>
 
   <main class="main">
 
@@ -58,48 +57,137 @@
     <section class="py-5 text-center bg-light">
       <div class="container">
         <h1 data-aos="fade-down">Fixtures & Results</h1>
-        <p class="lead" data-aos="fade-up">Check upcoming matches, past results, and league standings.</p>
+        <p class="lead mb-0" data-aos="fade-up">Check upcoming matches, latest results, and league standings.</p>
       </div>
     </section>
 
-    <!-- Upcoming Match -->
-   <!-- Upcoming Match -->
-<section class="upcoming-fixture py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">Next Fixture</h2>
-    <div class="card shadow mx-auto" style="max-width:600px;" data-aos="zoom-in">
-      <div class="card-body text-center">
-  <h4 id="next-opponent" class="fw-bold">IPY FC vs TBA</h4>
-  <p class="mb-1"><strong>Date:</strong> <span id="next-date">Coming Soon</span></p>
-  <p class="mb-3"><strong>Venue:</strong> <span id="next-venue">To Be Confirmed</span></p>
-  <a href="#full-fixtures" class="btn btn-outline-success">View Full Fixtures</a>
-</div>
-    </div>
-  </div>
-</section>
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="card shadow-sm fixture-summary-card h-100" data-aos="fade-up">
+              <div class="card-body text-center p-4">
+                <h3 class="fw-bold mb-3">Next Fixture</h3>
+                <div class="fixture-team-row mb-2">
+                  <img id="next-home-crest" src="assets/img/IPYlogo.jpg" alt="IPY FC crest" class="fixture-crest">
+                  <span id="next-opponent" class="fw-semibold fs-5">IPY FC vs TBA</span>
+                  <img id="next-away-crest" src="assets/img/crest/zimbabwe.jpg" alt="Opponent crest" class="fixture-crest">
+                </div>
+                <p class="mb-1"><strong>Date:</strong> <span id="next-date">TBA</span></p>
+                <p class="mb-3"><strong>Venue:</strong> <span id="next-venue">To Be Confirmed</span></p>
+                <button
+               id="toggleFixturesBtn"
+                  class="btn btn-outline-success"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#full-fixtures-collapse"
+                    aria-expanded="false"
+                    aria-controls="full-fixtures-collapse">
+                    View Full Fixtures
+                </button>
+              </div>
+            </div>
+          </div>
 
+          <div class="col-lg-6">
+            <div class="card shadow-sm fixture-summary-card h-100" data-aos="fade-up" data-aos-delay="120">
+              <div class="card-body text-center p-4">
+                <h3 class="fw-bold mb-3">Latest Result</h3>
+                <div class="fixture-team-row mb-2">
+                  <img id="result-home-crest" src="assets/img/IPYlogo.jpg" alt="IPY FC crest" class="fixture-crest">
+                  <span id="latest-result-opponent" class="fw-semibold fs-5">IPY FC vs TBA</span>
+                  <img id="result-away-crest" src="assets/img/crest/zimbabwe.jpg" alt="Opponent crest" class="fixture-crest">
+                </div>
+                <p class="mb-1"><strong>Score:</strong> <span id="latest-result-score">TBA</span></p>
+                <p class="mb-3"><strong>Date:</strong> <span id="latest-result-date">TBA</span></p>
+                <button
+                  id="toggleResultsBtn"
+                  class="btn btn-outline-success"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#full-results-collapse"
+                  aria-expanded="false"
+                  aria-controls="full-results-collapse">
+                  View Full Results
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <section id="full-fixtures" class="container py-3">
+      <div id="full-fixtures-collapse" class="collapse">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="mb-0">Full Fixture List</h3>
+          <span class="text-muted small">UCFL Division 3C</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-hover align-middle">
+            <thead class="table-success">
+              <tr>
+                <th>Date</th>
+                <th>Home</th>
+                <th>Away</th>
+                <th>Venue</th>
+              </tr>
+            </thead>
+            <tbody id="fullFixturesBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="full-results" class="container py-3">
+      <div id="full-results-collapse" class="collapse">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h3 class="mb-0">Full Results</h3>
+          <span class="text-muted small">Ordered by most recent</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-striped table-hover align-middle">
+            <thead class="table-success">
+              <tr>
+                <th>Date</th>
+                <th>Home</th>
+                <th>Score</th>
+                <th>Away</th>
+                <th>Venue</th>
+              </tr>
+            </thead>
+            <tbody id="fullResultsBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
     <!-- League Table -->
-   <section id="league-table" class="container mt-5">
-  <h3 class="text-center mb-3">League Table</h3>
+    <section id="league-table" class="container mt-5">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">League Table</h3>
+        <span id="leagueCompetitionName" class="badge bg-success-subtle text-success-emphasis">UCFL Division 3C</span>
+      </div>
 
-  <table class="table table-striped text-center">
-    <thead class="table-success">
-      <tr>
-        <th>#</th>
-        <th>Team</th>
-        <th>MP</th>
-        <th>W</th>
-        <th>D</th>
-        <th>L</th>
-        <th>PTS</th>
-      </tr>
-    </thead>
-    <tbody id="leagueTableBody"></tbody>
-  </table>
-</section>
-
+      <div class="table-responsive">
+        <table class="table table-striped text-center align-middle">
+          <thead class="table-success">
+            <tr>
+              <th>#</th>
+              <th class="text-start">Team</th>
+              <th>MP</th>
+              <th>W</th>
+              <th>D</th>
+              <th>L</th>
+              <th>PTS</th>
+            </tr>
+          </thead>
+          <tbody id="leagueTableBody"></tbody>
+        </table>
+      </div>
+    </section>
 
   </main>
 
@@ -107,100 +195,12 @@
     <i class="bi bi-arrow-up-short"></i>
   </a>
 
-    <!-- JS Files -->
+  <!-- JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/authNav.js"></script>
   <script src="assets/js/fixturesPage.js"></script>
 </body>
-</html>
 
-<script>
-async function loadNextFixture() {
-  try {
-    const response = await fetch('http://localhost:5001/api/fixtures');
-    const fixtures = await response.json();
-
-    if (!fixtures.length) return;
-
-    // sort by date (ascending)
-    fixtures.sort((a, b) => new Date(a.date) - new Date(b.date));
-
-    const nextGame = fixtures[0]; 
-
-    // update UI values
-    document.getElementById('next-opponent').innerText = `IPY FC vs ${nextGame.opponent}`;
-    document.getElementById('next-date').innerText = new Date(nextGame.date).toLocaleDateString();
-    document.getElementById('next-venue').innerText = nextGame.venue;
-  } catch (error) {
-    console.error("Error loading next fixture:", error);
-  }
-}
-
-loadNextFixture();
-</script>
-
-
-
-<script>
-  async function loadLeague() {
-    try {
-      const res = await fetch("http://localhost:5001/api/league");
-      const table = await res.json();
-
-      const tbody = document.getElementById("leagueTableBody");
-      tbody.innerHTML = "";
-
-      table.sort((a, b) => b.pts - a.pts);
-
-      table.forEach((team, index) => {
-        tbody.innerHTML += `
-          <tr>
-            <td>${index + 1}</td>
-            <td>${team.team}</td>
-            <td>${team.mp}</td>
-            <td>${team.w}</td>
-            <td>${team.d}</td>
-            <td>${team.l}</td>
-            <td><strong>${team.pts}</strong></td>
-          </tr>
-        `;
-      });
-    } catch (err) {
-      console.error("Error loading league:", err);
-    }
-  }
-
-  loadLeague();
-</script>
-<script>
-const token = localStorage.getItem("token");
-const userName = localStorage.getItem("userName");
-
-const signInBtn = document.getElementById("signinDropdown");
-const userDisplay = document.getElementById("userDisplay");
-const logoutBtn = document.getElementById("logoutBtn");
-
-// Only update if elements exist
-if (token && userName) {
-  if (signInBtn) signInBtn.style.display = "none";
-  if (userDisplay) userDisplay.textContent = `Welcome, ${userName}`;
-  if (logoutBtn) logoutBtn.style.display = "inline-block";
-} else {
-  if (logoutBtn) logoutBtn.style.display = "none";
-  if (userDisplay) userDisplay.textContent = "";
-}
-
-// Logout function
-function logoutUser() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userName");
-  localStorage.removeItem("userRole");
-  window.location.reload();
-}
-</script>
-
-
-</body>
 </html>

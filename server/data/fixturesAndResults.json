@@ -1,0 +1,182 @@
+{
+  "competition": "UCFL Division 3C",
+  "team": "IPY FC",
+  "fixtures": [
+    {
+      "opponent": "Clondalkin Celtic",
+      "date": "2025-08-30T13:00:00.000Z",
+      "venue": "Clondalkin Leisure Centre",
+      "kickOff": "13:00",
+      "result": "1-4"
+    },
+    {
+      "opponent": "AFC Belgrave",
+      "date": "2025-09-03T20:00:00.000Z",
+      "venue": "Bernard Curtins Park Bluebell",
+      "kickOff": "20:00",
+      "result": "5-3"
+    },
+    {
+      "opponent": "Team Zimbabwe",
+      "date": "2025-09-06T14:00:00.000Z",
+      "venue": "Bushy Park",
+      "kickOff": "14:00",
+      "result": "3-10"
+    },
+    {
+      "opponent": "Phibsboro Club de Futbol 2nds",
+      "date": "2025-09-13T12:00:00.000Z",
+      "venue": "John Paul 2nd Park, Cabra",
+      "kickOff": "12:00",
+      "result": "5-2"
+    },
+    {
+      "opponent": "Glasnaion FC 2nds",
+      "date": "2025-09-27T11:00:00.000Z",
+      "venue": "Johnstown Park No. 4",
+      "kickOff": "11:00",
+      "result": "3-2"
+    },
+    {
+      "opponent": "Glasnaion FC 2nds",
+      "date": "2025-09-27T14:30:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "14:30",
+      "result": ""
+    },
+    {
+      "opponent": "St Maelruans FC",
+      "date": "2025-10-11T14:30:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "14:30",
+      "result": "2-1"
+    },
+    {
+      "opponent": "Stedfast United 2nds",
+      "date": "2025-10-18T14:30:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "14:30",
+      "result": "1-5"
+    },
+    {
+      "opponent": "Dunshaughlin Youths FC 2nds",
+      "date": "2025-11-01T14:30:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "14:30",
+      "result": "3-0"
+    },
+    {
+      "opponent": "Firhouse Utd",
+      "date": "2025-11-08T15:20:00.000Z",
+      "venue": "Marley All Weather",
+      "kickOff": "15:20",
+      "result": "0-4"
+    },
+    {
+      "opponent": "Ronanstown FC 2nds",
+      "date": "2025-11-21T20:00:00.000Z",
+      "venue": "Coldcut Astro",
+      "kickOff": "20:00",
+      "result": "0-6"
+    },
+    {
+      "opponent": "Phibsboro Club de Futbol 2nds",
+      "date": "2026-01-31T14:00:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "14:00",
+      "result": ""
+    },
+    {
+      "opponent": "Lourdes Pearse FC",
+      "date": "2026-02-07T16:15:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "16:15",
+      "result": "3-3"
+    },
+    {
+      "opponent": "Firhouse Utd",
+      "date": "2026-02-14T16:15:00.000Z",
+      "venue": "Sean Walsh Astro",
+      "kickOff": "16:15",
+      "result": "1-2"
+    },
+    {
+      "opponent": "Larkview FC 3rds",
+      "date": "2026-02-21T14:00:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "14:00",
+      "result": "3-0"
+    },
+    {
+      "opponent": "Larkview FC 3rds",
+      "date": "2026-02-28T14:00:00.000Z",
+      "venue": "Whelan Park",
+      "kickOff": "14:00",
+      "result": "2-0"
+    },
+    {
+      "opponent": "Team Zimbabwe",
+      "date": "2026-03-07T14:00:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "14:00",
+      "result": "2-3"
+    },
+    {
+      "opponent": "Dunshaughlin Youths FC 2nds",
+      "date": "2026-03-14T11:30:00.000Z",
+      "venue": "The Willows Dunshaughlin (A85FK83)",
+      "kickOff": "11:30",
+      "result": "3-4"
+    },
+    {
+      "opponent": "Ronanstown FC 2nds",
+      "date": "2026-03-21T14:00:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "14:00",
+      "result": "3-6"
+    },
+    {
+      "opponent": "Lourdes Pearse FC",
+      "date": "2026-03-28T14:00:00.000Z",
+      "venue": "Clogher Road Sports Centre / Pearse College",
+      "kickOff": "14:00",
+      "result": ""
+    },
+
+    {
+      "opponent": "AFC Belgrave",
+      "date": null,
+      "venue": "Airlie Heights",
+      "kickOff": "TBA",
+      "result": ""
+    },
+    {
+      "opponent": "Clondalkin Celtic",
+      "date": null,
+      "venue": "Airlie Heights",
+      "kickOff": "TBA",
+      "result": ""
+    },
+    {
+      "opponent": "Phibsboro Club de Futbol 2nds",
+      "date": null,
+      "venue": "John Paul 2nd Park, Cabra",
+      "kickOff": "TBA",
+      "result": ""
+    },
+    {
+      "opponent": "St Maelruans FC",
+      "date": null,
+      "venue": "Bancroft Park, Tallaght",
+      "kickOff": "TBA",
+      "result": ""
+    },
+    {
+      "opponent": "Stedfast United 2nds",
+      "date": null,
+      "venue": "Ballylly Hill",
+      "kickOff": "TBA",
+      "result": ""
+    }
+  ]
+}

@@ -2,10 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
+"scripts": {
+  "start": "node server.js",
+  "dev": "nodemon server.js",
+  "sync:league": "node scripts/updateLeagueTable.js",
+  "sync:fixtures": "node scripts/syncFixtures.js",
+  "validate:fixtures": "node scripts/validateFixturesData.js",
+  "sync:fixtures:safe": "npm run validate:fixtures && npm run sync:fixtures",
+  "sync:all": "npm run sync:league && npm run sync:fixtures"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

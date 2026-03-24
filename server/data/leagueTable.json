@@ -1,0 +1,18 @@
+{
+  "competition": "UCFL Division 3C",
+  "teams": [
+    { "team": "Ronanstown FC 2nds", "mp": 18, "w": 18, "d": 0, "l": 0, "pts": 54 },
+    { "team": "Clondalkin Celtic", "mp": 14, "w": 11, "d": 2, "l": 1, "pts": 35 },
+    { "team": "Firhouse Utd", "mp": 17, "w": 10, "d": 3, "l": 4, "pts": 33 },
+    { "team": "Stedfast United 2nds", "mp": 14, "w": 9, "d": 1, "l": 4, "pts": 28 },
+    { "team": "Phibsboro Club de Futbol 2nds", "mp": 14, "w": 9, "d": 1, "l": 4, "pts": 28 },
+    { "team": "Glasnaion FC 2nds", "mp": 13, "w": 7, "d": 1, "l": 5, "pts": 22 },
+    { "team": "IPY FC", "mp": 17, "w": 7, "d": 1, "l": 9, "pts": 22 },
+    { "team": "Team Zimbabwe", "mp": 15, "w": 6, "d": 1, "l": 8, "pts": 19 },
+    { "team": "Dunshaughlin Youths FC 2nds", "mp": 11, "w": 3, "d": 1, "l": 7, "pts": 10 },
+    { "team": "Lourdes Pearse FC", "mp": 12, "w": 1, "d": 4, "l": 7, "pts": 7 },
+    { "team": "AFC Belgrave", "mp": 14, "w": 2, "d": 1, "l": 11, "pts": 7 },
+    { "team": "St Maelruans FC", "mp": 13, "w": 2, "d": 0, "l": 11, "pts": 6 },
+    { "team": "Larkview FC 3rds", "mp": 18, "w": 1, "d": 2, "l": 15, "pts": 5 }
+  ]
+}

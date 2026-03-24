@@ -2558,3 +2558,31 @@ body.fanhub-lock .fanhub-messages {
 body.fanhub-lock .fanhub-composer {
   flex-shrink: 0 !important;
 }
+
+/* Fixtures page cards/tables */
+.fixture-summary-card {
+  border-radius: 14px;
+}
+
+.fixture-team-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.fixture-crest {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #dfe8df;
+}
+
+.table-crest {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid #d6d6d6;
+}

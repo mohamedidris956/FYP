@@ -3,14 +3,12 @@ const { protect, admin } = require("../middleware/authMiddleware");
 const FanMessage = require("../models/FanMessage");
 const User = require("../models/User");
 const ModerationLog = require("../models/ModerationLog");
+const { sanitizeMessage, applyProfanityFilter } = require("../utils/chatModeration");
 
 const router = express.Router();
 
-function sanitizeMessage(input) {
-  return String(input || "")
-    .replace(/[<>]/g, "") // basic XSS hardening
-    .replace(/\s+/g, " ")
-    .trim();
+function normalizeReason(value) {
+  return sanitizeMessage(String(value || "")).slice(0, 300);
 }
 
 // GET latest messages (logged-in only)
@@ -50,9 +48,11 @@ router.post("/messages", protect, async (req, res) => {
       return res.status(400).json({ message: "Message is too long (max 300 chars)" });
     }
 
+    const { text: filteredText } = applyProfanityFilter(cleanText);
+
     const msg = await FanMessage.create({
       user: req.user._id,
-      text: cleanText
+      text: filteredText
     });
 
     const hydrated = await FanMessage.findById(msg._id)
@@ -106,13 +106,13 @@ router.post("/mute/:userId", protect, admin, async (req, res) => {
     user.mutedUntil = new Date(Date.now() + minutes * 60 * 1000);
     await user.save();
 
-await ModerationLog.create({
-  action: "mute",
-  actor: req.user._id,
-  target: user._id,
-  minutes,
-  reason: String(req.body?.reason || "").trim()
-});
+    await ModerationLog.create({
+      action: "mute",
+      actor: req.user._id,
+      target: user._id,
+      minutes,
+      reason: normalizeReason(req.body?.reason)
+    });
     res.json({
       message: `User muted for ${minutes} minute(s)`,
       userId: user._id,
@@ -134,11 +134,11 @@ router.post("/unmute/:userId", protect, admin, async (req, res) => {
     await user.save();
 
     await ModerationLog.create({
-  action: "unmute",
-  actor: req.user._id,
-  target: user._id,
-  reason: String(req.body?.reason || "").trim()
-});
+      action: "unmute",
+      actor: req.user._id,
+      target: user._id,
+      reason: normalizeReason(req.body?.reason)
+    });
 
     res.json({ message: "User unmuted", userId: user._id });
   } catch (err) {
