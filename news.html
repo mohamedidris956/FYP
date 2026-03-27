@@ -19,37 +19,52 @@
   <link href="assets/css/main.css" rel="stylesheet">
 </head>
 
+<!-- News Read More Modal -->
+<div class="modal fade" id="newsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="newsModalTitle">News Title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img id="newsModalImage" src="" alt="News image" class="img-fluid rounded mb-3">
+        <p id="newsModalDate" class="text-muted small mb-2"></p>
+        <p id="newsModalBody" class="mb-0"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <body>
 
   <!-- Header -->
   <header id="header" class="header d-flex align-items-center sticky-top">
-  <div class="container d-flex align-items-center justify-content-between">
+    <div class="container d-flex align-items-center justify-content-between">
 
-    <!-- Logo -->
-    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-      <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" class="img-fluid" style="height: 130px;">
-    </a>
+      <!-- Logo -->
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" class="img-fluid" style="height: 130px;">
+      </a>
 
-    <!-- Navbar -->
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="fixtures.html">Fixtures</a></li>
-        <li><a href="media.html">Media</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li><a href="news.html">News</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-    </nav>
+      <!-- Navbar -->
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="fixtures.html">Fixtures</a></li>
+          <li><a href="media.html">Media</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="news.html" class="active">News</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="fanhub.html">Fan Hub</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
 
-    <!-- Auth Display (Sign In OR Welcome + Logout) -->
-    <div id="authArea" class="d-flex align-items-center"></div>
-
-  </div>
-</header>
-
+      <!-- Auth Display (Sign In OR Welcome + Logout) -->
+      <div id="authArea" class="d-flex align-items-center"></div>
+    </div>
   </header>
 
   <main class="main">
@@ -58,98 +73,85 @@
     <section class="py-5 text-center bg-light">
       <div class="container">
         <h1 data-aos="fade-down">Latest News</h1>
-        <p class="lead" data-aos="fade-up">Stay updated with official club announcements and match reports.</p>
+        <p class="lead mb-0" data-aos="fade-up">Official club updates, match reports, and player announcements.</p>
       </div>
     </section>
 
-    <!-- News Articles -->
-<section class="py-5">
+    <!-- Featured Story -->
+    <section class="py-5">
+      <div class="container">
+        <div class="card border-0 shadow-sm news-featured-card" data-aos="fade-up">
+          <div class="row g-0 align-items-center">
+            <div class="col-lg-6">
+              <img src="assets/img/news/news-big-update.jpg" class="img-fluid w-100 news-featured-img" alt="Featured News">
+            </div>
+            <div class="col-lg-6">
+              <div class="card-body p-4 p-lg-5">
+                <span class="badge bg-success-subtle text-success-emphasis mb-2">Club Update</span>
+                <h2 class="h3 fw-bold mb-2">Big Club Update</h2>
+                <p class="text-muted mb-3">
+                  We have an important announcement for supporters. Full details below.
+                </p>
+                <button class="btn btn-outline-success btn-sm news-filter-btn" data-filter="club">
+                  View Club Updates
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Filters -->
+    <section class="pb-3">
+      <div class="container">
+        <div class="d-flex flex-wrap gap-2 justify-content-center" id="newsFilters">
+          <button class="btn btn-outline-success active" data-filter="all">All</button>
+          <button class="btn btn-outline-success" data-filter="match">Match Reports</button>
+          <button class="btn btn-outline-success" data-filter="club">Club Updates</button>
+          <button class="btn btn-outline-success" data-filter="player">Player News</button>
+          <button class="btn btn-outline-success" data-filter="interview">Interviews</button>
+        </div>
+      </div>
+    </section>
+
+<!-- News Cards -->
+<section class="py-4">
   <div class="container">
-    <div class="row g-4">
-
-      <!-- News Card 1 -->
-      <div class="col-md-4" data-aos="zoom-in">
-        <div class="card h-100 shadow">
-          <img src="assets/img/news/news-big-update.jpg" class="news-img card-img-top" alt="Club Announcement">
-          <div class="card-body">
-            <h5 class="card-title fw-bold">Big News Coming Soon</h5>
-            <p class="card-text">Exciting club updates will be announced soon. Stay tuned for the official reveal.</p>
-            <a href="#" class="btn btn-success btn-sm w-100">Read More</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Card 2 -->
-      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
-        <div class="card h-100 shadow">
-          <img src="assets/img/news/news-match-report.jpg" class="news-img card-img-top" alt="Match Report">
-          <div class="card-body">
-            <h5 class="card-title fw-bold">Match Reports Coming Soon</h5>
-            <p class="card-text">Full match breakdowns, highlights, and goal analysis will be posted after fixtures.</p>
-            <a href="#" class="btn btn-success btn-sm w-100">Read More</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- News Card 3 -->
-      <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
-        <div class="card h-100 shadow">
-          <img src="assets/img/news/news-player-announcement.jpg" class="news-img card-img-top" alt="Player News">
-          <div class="card-body">
-            <h5 class="card-title fw-bold">Player Announcements</h5>
-            <p class="card-text">Stay tuned for new signings, squad updates, injury news, and player profiles.</p>
-            <a href="#" class="btn btn-success btn-sm w-100">Read More</a>
-          </div>
-        </div>
-      </div>
-
+    <div class="row g-4" id="newsGrid">
+      <div class="col-12 text-center text-muted" id="newsLoading">Loading news...</div>
     </div>
   </div>
 </section>
-
-
   </main>
 
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
     <i class="bi bi-arrow-up-short"></i>
   </a>
 
+  <!-- News Read More Modal -->
+<div class="modal fade" id="newsModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-0">
+      <div class="modal-header">
+        <h5 class="modal-title fw-bold" id="newsModalTitle">News Title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img id="newsModalImage" src="" alt="News image" class="img-fluid rounded mb-3">
+        <p id="newsModalDate" class="text-muted small mb-2"></p>
+        <p id="newsModalBody" class="mb-0"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
   <!-- JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/js/main.js"></script>
-  <!-- Auth UI Script -->
-<script src="assets/js/authNav.js"></script>
+  <script src="assets/js/authNav.js"></script>
+  <script src="assets/js/newsPage.js"></script>
 </body>
-</html>
 
-<script>
-const token = localStorage.getItem("token");
-const userName = localStorage.getItem("userName");
-
-const signInBtn = document.getElementById("signinDropdown");
-const userDisplay = document.getElementById("userDisplay");
-const logoutBtn = document.getElementById("logoutBtn");
-
-// Only update if elements exist
-if (token && userName) {
-  if (signInBtn) signInBtn.style.display = "none";
-  if (userDisplay) userDisplay.textContent = `Welcome, ${userName}`;
-  if (logoutBtn) logoutBtn.style.display = "inline-block";
-} else {
-  if (logoutBtn) logoutBtn.style.display = "none";
-  if (userDisplay) userDisplay.textContent = "";
-}
-
-// Logout function
-function logoutUser() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userName");
-  localStorage.removeItem("userRole");
-  window.location.reload();
-}
-</script>
-
-
-</body>
 </html>

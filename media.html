@@ -51,91 +51,251 @@
 </header>
 
 
-  <main class="main">
+<main class="main">
 
-    <!-- Media Hero Section -->
-    <section class="py-5 text-center bg-light">
-      <div class="container">
-        <h1 data-aos="fade-down">Media Gallery</h1>
-        <p class="lead" data-aos="fade-up">Photos and Video Highlights from IPY FC Matches & Events</p>
-      </div>
-    </section>
-
-    <!-- Photo Gallery -->
-    <section class="py-5">
-  <div class="container">
-    <h3 class="text-center mb-4">Photo Highlights</h3>
-
-    <div class="row g-4">
-
-      <!-- Photo 1 -->
-      <div class="col-md-4">
-        <div class="card shadow-sm border-0">
-          <img src="assets/img/media/team-photo1.jpg" class="media-photo" alt="Team Celebration">
-          <div class="card-body text-center">
-            <h6 class="fw-bold">Photoshoot</h6>
-          </div>
-        </div>
-      </div>
-
-      <!-- Photo 2 -->
-      <div class="col-md-4">
-        <div class="card shadow-sm border-0">
-         <img src="assets/img/media/team-photo2.jpg" class="media-photo" alt="Team Celebration">
-          <div class="card-body text-center">
-            <h6 class="fw-bold">Match Day Team Talk</h6>
-          </div>
-        </div>
-      </div>
-
-      <!-- Photo 3 -->
-      <div class="col-md-4">
-        <div class="card shadow-sm border-0">
-          <img src="assets/img/media/team-photo3.jpg" class="media-photo" alt="Team Celebration">
-          <div class="card-body text-center">
-            <h6 class="fw-bold">Match Day Line Up</h6>
-          </div>
-        </div>
-      </div>
-
+  <!-- Media Hero Section -->
+  <section class="py-5 text-center bg-light">
+    <div class="container">
+      <h1 data-aos="fade-down">Media Gallery</h1>
+      <p class="lead mb-0" data-aos="fade-up">Photos and clips from IPY FC matchdays, interviews, and BTS moments.</p>
     </div>
-  </div>
-</section>
+  </section>
 
+  <section class="py-5">
+    <div class="container">
+      <!-- Filter Tabs -->
+      <div class="d-flex flex-wrap gap-2 justify-content-center mb-4" id="mediaFilters">
+  <button class="btn btn-outline-success active" data-filter="all">All</button>
+  <button class="btn btn-outline-success" data-filter="photo">Photos</button>
+  <button class="btn btn-outline-success" data-filter="video">Videos</button>
+  <button class="btn btn-outline-success" data-filter="highlights">Match Highlights</button>
+  <button class="btn btn-outline-success" data-filter="goals">Goals</button>
+  <button class="btn btn-outline-success" data-filter="matchday">Matchday</button>
+  <button class="btn btn-outline-success" data-filter="bts">Behind-the-scenes</button>
+  <button class="btn btn-outline-success" data-filter="interview">Interviews</button>
+</div>
 
-    <!-- Video Highlights -->
-    <h2 class="text-center mb-4">Video Highlights</h2>
-
-<div class="container">
-  <div class="row g-4">
-
-    <!-- Video 1 -->
-    <div class="col-md-6">
-      <div class="video-wrapper">
-        <iframe 
-          src="https://www.youtube.com/embed/UC2hv1SCmLI"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <p class="text-center fw-bold mt-2">IPY FC VS ST MAELRUAN</p>
-    </div>
-
-    <!-- Video 2 -->
-    <div class="col-md-6">
-      <div class="video-wrapper">
-        <iframe 
-          src="https://www.youtube.com/embed/NzWSDyuZtGc"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <p class="text-center fw-bold mt-2">IPY FC VS TEAM ZIM IRELAND FC</p>
-    </div>
-
+      <!-- Mixed Grid -->
+<div class="row g-4" id="mediaGrid">
+  <!-- Photos -->
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="bts">
+  <div class="media-card" data-src="assets/img/media/photoshoot7.jpg" data-media="photo">
+    <img src="assets/img/media/photoshoot7.jpg" alt="Photoshoot 1" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • BTS</span></div>
   </div>
 </div>
-    </section>
 
-  </main>
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/media1.jpg" data-media="photo">
+    <img src="assets/img/media/media1.jpg" alt="Media 1" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/media2.jpg" data-media="photo">
+    <img src="assets/img/media/media2.jpg" alt="Media 2" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/media3.jpg" data-media="photo">
+    <img src="assets/img/media/media3.jpg" alt="Media 3" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="bts">
+  <div class="media-card" data-src="assets/img/media/photoshoot1.jpg" data-media="photo">
+    <img src="assets/img/media/photoshoot1.jpg" alt="Photoshoot 1" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • BTS</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="bts">
+  <div class="media-card" data-src="assets/img/media/photoshoot2.jpg" data-media="photo">
+    <img src="assets/img/media/photoshoot2.jpg" alt="Photoshoot 2" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • BTS</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="bts">
+  <div class="media-card" data-src="assets/img/media/photoshoot3.jpg" data-media="photo">
+    <img src="assets/img/media/photoshoot3.jpg" alt="Photoshoot 3" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • BTS</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="bts">
+  <div class="media-card" data-src="assets/img/media/photoshoot4.jpg" data-media="photo">
+    <img src="assets/img/media/photoshoot4.jpg" alt="Photoshoot 4" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • BTS</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="bts">
+  <div class="media-card" data-src="assets/img/media/photoshoot5.jpg" data-media="photo">
+    <img src="assets/img/media/photoshoot5.jpg" alt="Photoshoot 5" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • BTS</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="bts">
+  <div class="media-card" data-src="assets/img/media/photoshoot6.jpg" data-media="photo">
+    <img src="assets/img/media/photoshoot6.jpg" alt="Photoshoot 6" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • BTS</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/pitchside1.jpg" data-media="photo">
+    <img src="assets/img/media/pitchside1.jpg" alt="Pitchside 1" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/pitchside2.jpg" data-media="photo">
+    <img src="assets/img/media/pitchside2.jpg" alt="Pitchside 2" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/pitchside3.jpg" data-media="photo">
+    <img src="assets/img/media/pitchside3.jpg" alt="Pitchside 3" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/pitchside4.jpg" data-media="photo">
+    <img src="assets/img/media/pitchside4.jpg" alt="Pitchside 4" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="interview">
+  <div class="media-card" data-src="assets/img/media/playerquote.jpg" data-media="photo">
+    <img src="assets/img/media/playerquote.jpg" alt="Player Quote" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Interview</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/team-photo1.jpg" data-media="photo">
+    <img src="assets/img/media/team-photo1.jpg" alt="Team Photo 1" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/team-photo2.jpg" data-media="photo">
+    <img src="assets/img/media/team-photo2.jpg" alt="Team Photo 2" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="matchday">
+  <div class="media-card" data-src="assets/img/media/team-photo3.jpg" data-media="photo">
+    <img src="assets/img/media/team-photo3.jpg" alt="Team Photo 3" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Matchday</span></div>
+  </div>
+</div>
+
+  <!-- Coming Soon: Recent Match Highlight 1 -->
+  <div class="col-sm-6 col-lg-4 media-item" data-type="highlight" data-tags="highlights">
+    <div class="card shadow-sm border-0">
+      <div class="media-coming-soon">
+        <i class="bi bi-camera-reels-fill"></i>
+        <p class="mb-0">Highlight Coming Soon</p>
+      </div>
+      <div class="card-body text-center">
+        <h6 class="fw-bold mb-1">Recent Match Highlight #1</h6>
+        <small class="text-muted">Footage will be uploaded soon</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Coming Soon: Recent Match Highlight 2 -->
+  <div class="col-sm-6 col-lg-4 media-item" data-type="highlight" data-tags="highlights">
+    <div class="card shadow-sm border-0">
+      <div class="media-coming-soon">
+        <i class="bi bi-camera-reels-fill"></i>
+        <p class="mb-0">Highlight Coming Soon</p>
+      </div>
+      <div class="card-body text-center">
+        <h6 class="fw-bold mb-1">Recent Match Highlight #2</h6>
+        <small class="text-muted">Footage will be uploaded soon</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Videos -->
+  <div class="col-sm-6 col-lg-4 media-item" data-type="video" data-tags="bts">
+    <div class="media-card" data-src="assets/img/video/homekitreveal.mp4" data-media="video">
+      <video class="media-thumb media-thumb-video" muted preload="metadata">
+        <source src="assets/img/video/homekitreveal.mp4" type="video/mp4">
+      </video>
+      <div class="media-play"><i class="bi bi-play-circle-fill"></i></div>
+      <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Video • BTS</span></div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-4 media-item" data-type="video" data-tags="bts">
+    <div class="media-card" data-src="assets/img/video/awaykitreveal.mp4" data-media="video">
+      <video class="media-thumb media-thumb-video" muted preload="metadata">
+        <source src="assets/img/video/awaykitreveal.mp4" type="video/mp4">
+      </video>
+      <div class="media-play"><i class="bi bi-play-circle-fill"></i></div>
+      <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Video • BTS</span></div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-4 media-item" data-type="video" data-tags="interview">
+    <div class="media-card" data-src="assets/img/video/playerinterview1.mp4" data-media="video">
+      <video class="media-thumb media-thumb-video" muted preload="metadata">
+        <source src="assets/img/video/playerinterview1.mp4" type="video/mp4">
+      </video>
+      <div class="media-play"><i class="bi bi-play-circle-fill"></i></div>
+      <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Video • Interview</span></div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-lg-4 media-item" data-type="video" data-tags="bts">
+    <div class="media-card" data-src="assets/img/video/playerskit1.mp4" data-media="video">
+      <video class="media-thumb media-thumb-video" muted preload="metadata">
+        <source src="assets/img/video/playerskit1.mp4" type="video/mp4">
+      </video>
+      <div class="media-play"><i class="bi bi-play-circle-fill"></i></div>
+      <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Video • BTS</span></div>
+    </div>
+  </div>
+<div class="col-sm-6 col-lg-4 media-item" data-type="goal" data-tags="goals matchday">
+    <div class="media-card" data-src="assets/img/video/zaheergoal.mp4" data-media="video">
+      <video class="media-thumb media-thumb-video" muted preload="metadata">
+        <source src="assets/img/video/zaheergoal.mp4" type="video/mp4">
+      </video>
+      <div class="media-play"><i class="bi bi-play-circle-fill"></i></div>
+      <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Video • Goal</span></div>
+       </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Lightbox Modal -->
+<div class="modal fade" id="mediaLightbox" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content bg-black border-0">
+      <div class="modal-body p-0 position-relative" id="mediaLightboxBody"></div>
+      <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
 
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
     <i class="bi bi-arrow-up-short"></i>
@@ -145,37 +305,11 @@
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/mediaPage.js"></script>
   <!-- Auth UI Script -->
 <script src="assets/js/authNav.js"></script>
 </body>
 </html>
-
-<script>
-const token = localStorage.getItem("token");
-const userName = localStorage.getItem("userName");
-
-const signInBtn = document.getElementById("signinDropdown");
-const userDisplay = document.getElementById("userDisplay");
-const logoutBtn = document.getElementById("logoutBtn");
-
-// Only update if elements exist
-if (token && userName) {
-  if (signInBtn) signInBtn.style.display = "none";
-  if (userDisplay) userDisplay.textContent = `Welcome, ${userName}`;
-  if (logoutBtn) logoutBtn.style.display = "inline-block";
-} else {
-  if (logoutBtn) logoutBtn.style.display = "none";
-  if (userDisplay) userDisplay.textContent = "";
-}
-
-// Logout function
-function logoutUser() {
-  localStorage.removeItem("token");
-  localStorage.removeItem("userName");
-  localStorage.removeItem("userRole");
-  window.location.reload();
-}
-</script>
 
 
 </body>

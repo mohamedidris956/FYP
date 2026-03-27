@@ -2586,3 +2586,188 @@ body.fanhub-lock .fanhub-composer {
   border-radius: 50%;
   border: 1px solid #d6d6d6;
 }
+
+/* Media page */
+#mediaFilters .btn.active {
+  background: #198754;
+  color: #fff;
+}
+
+.media-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+.media-thumb {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.media-thumb-video {
+  background: #000;
+}
+
+.media-meta {
+  padding: 10px 12px;
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+
+.media-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 42px;
+  text-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.media-coming-soon {
+  height: 250px;
+  background: linear-gradient(135deg, #0f172a, #1f2937);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.media-coming-soon i {
+  font-size: 38px;
+  opacity: 0.9;
+}
+
+/* News page */
+.news-featured-card {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.news-featured-img {
+  width: 100%;
+  height: 360px;
+  object-fit: contain;   /* show full image */
+  object-position: center;
+  display: block;
+  background: #f3f3f3;   /* letterbox background */
+}
+
+/* consistent card sizing */
+.news-card {
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.news-img {
+  width: 100%;
+  height: 180px;        /* keeps card heights aligned */
+  object-fit: contain;  /* shows full image */
+  object-position: center;
+  display: block;
+  background: #f3f3f3;  /* clean background for letterbox space */
+}
+
+.news-card .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 14px;
+}
+
+.news-card .card-title {
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.news-card .card-text {
+  margin-bottom: 12px;
+  flex-grow: 1; /* aligns Read More buttons */
+}
+
+.news-card .open-news-modal,
+.news-card .btn {
+  margin-top: auto;
+}
+
+/* Filters */
+#newsFilters .btn.active {
+  background: #198754;
+  color: #fff;
+  border-color: #198754;
+}
+
+#newsFilters .btn {
+  border-radius: 999px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+/* Modal */
+#newsModal .modal-content {
+  border-radius: 12px;
+}
+
+#newsModalImage {
+  max-height: 360px;
+  width: 100%;
+  object-fit: contain;   /* show full image */
+  object-position: center;
+  background: #f3f3f3;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .news-featured-img {
+    height: 260px;
+  }
+
+  .news-img {
+    height: 170px;
+  }
+}
+
+/* --- News Admin (small optional polish) --- */
+.news-admin-wrap {
+  max-width: 900px;
+}
+
+.news-admin-wrap .card {
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+}
+
+.news-admin-wrap .form-control,
+.news-admin-wrap .form-select,
+.news-admin-wrap textarea {
+  border-radius: 10px;
+}
+
+.news-admin-wrap .table td,
+.news-admin-wrap .table th {
+  vertical-align: middle;
+}
+
+.news-admin-actions .btn {
+  min-width: 72px;
+}

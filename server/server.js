@@ -87,6 +87,7 @@ app.use('/api/checkout', require('./routes/checkoutRoutes'));
 app.use("/api/team", require("./routes/teamRoutes"));
 app.use('/api/products', require('./routes/productRoutes'));
 app.use('/api/fanhub', require('./routes/fanHubRoutes'));
+app.use("/api/news", require("./routes/newsRoutes"));
 
 //health
 app.get('/health', (req, res) => {
