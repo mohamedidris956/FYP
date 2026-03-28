@@ -1,5 +1,6 @@
 (() => {
-  const API_URL = '/api/news';
+const API_URL = '/api/news/admin';
+const ADMIN_LIST_URL = '/api/news/admin/all';
   const token = localStorage.getItem('token');
   const userRole = localStorage.getItem('userRole');
 
@@ -85,12 +86,15 @@
       }
     }
 
+    
     return {
-      title: titleEl?.value?.trim() || '',
-      summary: summaryEl?.value?.trim() || '',
-      content: contentEl?.value?.trim() || '',
-      imageUrl: imageUrlEl?.value?.trim() || '',
-      publishedAt
+    title: titleEl?.value?.trim() || '',
+    summary: summaryEl?.value?.trim() || '',
+    body: contentEl?.value?.trim() || '',
+    image: imageUrlEl?.value?.trim() || '',
+    category: 'club',
+    published: true,
+     publishedAt
     };
   };
 
@@ -103,7 +107,10 @@
     clearError();
     clearSuccess();
 
-    const res = await fetch(API_URL);
+    
+    const res = await fetch(ADMIN_LIST_URL, {
+    headers: authHeaders()
+    });
     if (!res.ok) {
       throw new Error('Failed to load news posts.');
     }
@@ -138,8 +145,9 @@
         if (idEl) idEl.value = item._id;
         if (titleEl) titleEl.value = item.title || '';
         if (summaryEl) summaryEl.value = item.summary || '';
-        if (contentEl) contentEl.value = item.content || '';
-        if (imageUrlEl) imageUrlEl.value = item.imageUrl || '';
+        // (edit hydration)
+        if (contentEl) contentEl.value = item.body || '';
+        if (imageUrlEl) imageUrlEl.value = item.image || '';
         if (publishedAtEl) publishedAtEl.value = formatDateForInput(item.publishedAt);
 
         window.scrollTo({ top: 0, behavior: 'smooth' });

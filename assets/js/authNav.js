@@ -23,13 +23,14 @@ function loadAuthUI() {
   }
 
   const adminBtn =
-  role === "admin"
-    ? `
-      <a href="admin.html" class="btn btn-outline-success mb-2">Admin Dashboard</a>
-      <a href="fanhub-admin.html" class="btn btn-outline-success mb-2">Fan Hub Admin</a>
-      <a href="news-admin.html" class="btn btn-outline-success mb-2">News Admin</a>
-    `
-    : "";
+role === "admin"
+  ? `
+    <a href="admin.html" class="btn btn-outline-success mb-2">Admin Dashboard</a>
+    <a href="fanhub-admin.html" class="btn btn-outline-success mb-2">Fan Hub Admin</a>
+    <a href="news-admin.html" class="btn btn-outline-success mb-2">News Admin</a>
+    <a href="contact-admin.html" class="btn btn-outline-success mb-2">Contact Admin</a>
+  `
+  : "";
 
   // Logged IN — universal stacked layout
   let html = `

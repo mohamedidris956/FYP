@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact Admin | IPY FC</title>
+
+  <link href="assets/img/IPYlogo.jpg" rel="icon">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" class="img-fluid" style="height: 100px;">
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact-admin.html" class="active">Contact Admin</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div id="authArea" class="d-flex align-items-center"></div>
+    </div>
+  </header>
+
+  <main class="container py-5">
+    <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+      <h1 class="mb-0">Contact Messages</h1>
+      <a href="contact.html" class="btn btn-outline-secondary btn-sm">Go to Contact Page</a>
+    </div>
+
+    <p class="text-muted mb-4">Admin inbox for website contact submissions.</p>
+
+    <div id="contactAdminError" class="alert alert-danger d-none" role="alert"></div>
+    <div id="contactAdminSuccess" class="alert alert-success d-none" role="alert"></div>
+
+    <div class="card card-body mb-3">
+      <div class="row g-2 align-items-end">
+        <div class="col-md-6">
+          <label for="contactSearchInput" class="form-label mb-1">Search</label>
+          <input
+            id="contactSearchInput"
+            type="text"
+            class="form-control"
+            placeholder="Search name, email, or message..."
+          >
+        </div>
+        <div class="col-md-3">
+          <label for="contactReadFilter" class="form-label mb-1">Status</label>
+          <select id="contactReadFilter" class="form-select">
+            <option value="">All</option>
+            <option value="false">Unread</option>
+            <option value="true">Read</option>
+          </select>
+        </div>
+        <div class="col-md-3 d-flex gap-2">
+          <button id="contactApplyFiltersBtn" class="btn btn-outline-primary w-100" type="button">Apply</button>
+          <button id="contactExportCsvBtn" class="btn btn-outline-success w-100" type="button">Export CSV</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-body">
+      <div class="table-responsive">
+        <table class="table table-striped align-middle" id="contactAdminTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Message</th>
+              <th>Status</th>
+              <th>Received</th>
+              <th style="width: 180px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="6" class="text-center text-muted">Loading messages...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/authNav.js"></script>
+  <script src="assets/js/contactAdmin.js"></script>
+</body>
+</html>

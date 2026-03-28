@@ -75,35 +75,86 @@
             <p><i class="bi bi-geo-alt-fill text-success"></i> <strong>Location:</strong> Dublin, Ireland</p>
 
             <div class="mt-4">
-              <h5>Follow Us</h5>
-              <a href="#" class="me-3 text-success"><i class="bi bi-facebook fs-3"></i></a>
-              <a href="#" class="me-3 text-success"><i class="bi bi-instagram fs-3"></i></a>
-              <a href="#" class="text-success"><i class="bi bi-youtube fs-3"></i></a>
-            </div>
-          </div>
+  <h5>Follow Us</h5>
+  <a
+    href="https://www.tiktok.com/@ipyfc?_r=1&_t=ZS-952pIq8uVU8"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="me-3 text-success"
+    aria-label="TikTok"
+  >
+    <i class="bi bi-tiktok fs-3"></i>
+  </a>
+  <a
+    href="https://www.instagram.com/ipy_fc?igsh=MXkwaGZyaHRwbWxoNg=="
+    target="_blank"
+    rel="noopener noreferrer"
+    class="me-3 text-success"
+    aria-label="Instagram"
+  >
+    <i class="bi bi-instagram fs-3"></i>
+  </a>
+  <a
+    href="https://youtube.com/@ipyfc?feature=shared"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="text-success"
+    aria-label="YouTube"
+  >
+    <i class="bi bi-youtube fs-3"></i>
+  </a>
+</div>
+</div>
 
           <!-- Contact Form -->
           <div class="col-lg-7" data-aos="fade-left">
-            <form class="bg-light p-4 rounded shadow">
-              <h3 class="fw-bold mb-4">Send a Message</h3>
+            <form id="contactForm" class="bg-light p-4 rounded shadow" novalidate>
+  <h3 class="fw-bold mb-4">Send a Message</h3>
 
-              <div class="mb-3">
-                <label class="form-label">Your Name</label>
-                <input type="text" class="form-control" placeholder="Enter your name">
-              </div>
+  <div id="contactSuccess" class="alert alert-success d-none" role="alert"></div>
+  <div id="contactError" class="alert alert-danger d-none" role="alert"></div>
 
-              <div class="mb-3">
-                <label class="form-label">Your Email</label>
-                <input type="email" class="form-control" placeholder="Enter your email">
-              </div>
+  <div class="mb-3">
+    <label class="form-label" for="contactName">Your Name</label>
+    <input
+      id="contactName"
+      name="name"
+      type="text"
+      class="form-control"
+      placeholder="Enter your name"
+      maxlength="120"
+      required
+    >
+  </div>
 
-              <div class="mb-3">
-                <label class="form-label">Message</label>
-                <textarea class="form-control" rows="4" placeholder="Write your message here"></textarea>
-              </div>
+  <div class="mb-3">
+    <label class="form-label" for="contactEmail">Your Email</label>
+    <input
+      id="contactEmail"
+      name="email"
+      type="email"
+      class="form-control"
+      placeholder="Enter your email"
+      maxlength="254"
+      required
+    >
+  </div>
 
-              <button type="submit" class="btn btn-success w-100">Send Message</button>
-            </form>
+  <div class="mb-3">
+    <label class="form-label" for="contactMessage">Message</label>
+    <textarea
+      id="contactMessage"
+      name="message"
+      class="form-control"
+      rows="4"
+      placeholder="Write your message here"
+      maxlength="5000"
+      required
+    ></textarea>
+  </div>
+
+  <button id="contactSubmitBtn" type="submit" class="btn btn-success w-100">Send Message</button>
+</form>
           </div>
 
         </div>
@@ -122,6 +173,7 @@
   <script src="assets/js/main.js"></script>
 <!-- Auth UI Script -->
 <script src="assets/js/authNav.js"></script>
+<script src="assets/js/contact.js"></script>
 </body>
 </html>
 

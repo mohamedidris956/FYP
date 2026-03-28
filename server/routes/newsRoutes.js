@@ -21,18 +21,75 @@ function sanitizeText(value) {
 }
 
 const articleValidators = [
-  body("title").isLength({ min: 3, max: 140 }),
-  body("category").isIn(["match", "club", "player", "interview"]),
-  body("summary").isLength({ min: 10, max: 220 }),
-  body("body").isLength({ min: 20, max: 12000 }),
-  body("image").isLength({ min: 5, max: 500 })
+  body("title").trim().isLength({ min: 3, max: 140 }),
+  body("summary").trim().isLength({ min: 10, max: 220 }),
+  body("body")
+    .optional({ checkFalsy: true })
+    .isLength({ min: 20, max: 12000 }),
+  body("content")
+    .optional({ checkFalsy: true })
+    .isLength({ min: 20, max: 12000 }),
+  body("category")
+    .optional({ checkFalsy: true })
+    .isIn(["match", "club", "player", "interview"]),
+  body("image")
+    .optional({ checkFalsy: true })
+    .isLength({ min: 5, max: 500 }),
+  body("imageUrl")
+    .optional({ checkFalsy: true })
+    .isLength({ min: 5, max: 500 })
 ];
+
+function normalizeArticlePayload(payload = {}) {
+  const title = sanitizeText(payload.title);
+  const summary = sanitizeText(payload.summary);
+  const content = sanitizeText(payload.body || payload.content);
+  const image = sanitizeText(payload.image || payload.imageUrl);
+  const slug = sanitizeText(payload.slug) || slugify(title);
+  const category = ["match", "club", "player", "interview"].includes(payload.category)
+    ? payload.category
+    : "club";
+  const published = typeof payload.published === "boolean" ? payload.published : true;
+
+  let publishedAt = new Date();
+  if (payload.publishedAt) {
+    const parsed = new Date(payload.publishedAt);
+    if (!Number.isNaN(parsed.getTime())) {
+      publishedAt = parsed;
+    }
+  }
+
+  return {
+    title,
+    slug,
+    category,
+    summary,
+    body: content,
+    image,
+    published,
+    publishedAt
+  };
+}
 
 // Public: list published news
 router.get("/", async (req, res) => {
   try {
     const items = await NewsArticle.find({ published: true })
       .sort({ publishedAt: -1, createdAt: -1 })
+      .lean();
+
+    res.json(items);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Admin: list all (including unpublished)
+router.get("/admin/all", protect, admin, async (req, res) => {
+  try {
+    const items = await NewsArticle.find({})
+      .sort({ createdAt: -1 })
       .lean();
 
     res.json(items);
@@ -58,20 +115,6 @@ router.get("/:slug", async (req, res) => {
   }
 });
 
-// Admin: list all (including unpublished)
-router.get("/admin/all", protect, admin, async (req, res) => {
-  try {
-    const items = await NewsArticle.find({})
-      .sort({ createdAt: -1 })
-      .lean();
-
-    res.json(items);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server error" });
-  }
-});
-
 // Admin: create article
 router.post("/admin", protect, admin, articleValidators, async (req, res) => {
   try {
@@ -80,8 +123,10 @@ router.post("/admin", protect, admin, articleValidators, async (req, res) => {
       return res.status(400).json({ message: "Validation failed", errors: errors.array() });
     }
 
-    const title = sanitizeText(req.body.title);
-    const slug = sanitizeText(req.body.slug) || slugify(title);
+    const normalized = normalizeArticlePayload(req.body);
+    const { slug } = normalized;
+
+    if (!validateNormalizedContent(res, normalized)) return;
 
     const exists = await NewsArticle.findOne({ slug });
     if (exists) {
@@ -89,14 +134,7 @@ router.post("/admin", protect, admin, articleValidators, async (req, res) => {
     }
 
     const article = await NewsArticle.create({
-      title,
-      slug,
-      category: req.body.category,
-      summary: sanitizeText(req.body.summary),
-      body: sanitizeText(req.body.body),
-      image: sanitizeText(req.body.image),
-      published: Boolean(req.body.published ?? true),
-      publishedAt: req.body.publishedAt ? new Date(req.body.publishedAt) : new Date(),
+      ...normalized,
       author: req.user?._id || null
     });
 
@@ -115,8 +153,10 @@ router.put("/admin/:id", protect, admin, articleValidators, async (req, res) => 
       return res.status(400).json({ message: "Validation failed", errors: errors.array() });
     }
 
-    const title = sanitizeText(req.body.title);
-    const slug = sanitizeText(req.body.slug) || slugify(title);
+    const normalized = normalizeArticlePayload(req.body);
+    const { slug } = normalized;
+
+    if (!validateNormalizedContent(res, normalized)) return;
 
     const duplicate = await NewsArticle.findOne({ slug, _id: { $ne: req.params.id } });
     if (duplicate) {
@@ -125,16 +165,7 @@ router.put("/admin/:id", protect, admin, articleValidators, async (req, res) => 
 
     const updated = await NewsArticle.findByIdAndUpdate(
       req.params.id,
-      {
-        title,
-        slug,
-        category: req.body.category,
-        summary: sanitizeText(req.body.summary),
-        body: sanitizeText(req.body.body),
-        image: sanitizeText(req.body.image),
-        published: Boolean(req.body.published ?? true),
-        publishedAt: req.body.publishedAt ? new Date(req.body.publishedAt) : new Date()
-      },
+      normalized,
       { new: true }
     );
 

@@ -12,7 +12,11 @@ const newsArticleSchema = new mongoose.Schema(
     },
     summary: { type: String, required: true, trim: true, maxlength: 220 },
     body: { type: String, required: true, trim: true, maxlength: 12000 },
-    image: { type: String, required: true, trim: true },
+    image: {
+    type: String,
+    trim: true,
+    default: "assets/img/news/news1.jpg"
+    },
     published: { type: Boolean, default: true },
     publishedAt: { type: Date, default: Date.now },
     author: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null }
