@@ -29,4 +29,19 @@ router.post("/starting11", protect, async (req, res) => {
   }
 });
 
+// Get logged-in user's saved Starting XIs
+router.get("/starting11/mine", protect, async (req, res) => {
+  try {
+    const squads = await StartingXI.find({ user: req.user._id })
+      .sort({ createdAt: -1 })
+      .limit(20)
+      .lean();
+
+    res.json(squads);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 module.exports = router;

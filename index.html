@@ -61,53 +61,84 @@
 
  <main class="main">
 
-  <!-- 1️⃣ Hero Section -->
-<section class="home-hero text-center d-flex align-items-center">
+ <!-- 1️⃣ Hero Section (Dynamic Matchday-first) -->
+<section class="home-hero d-flex align-items-center">
+  <div class="hero-overlay"></div>
+
   <div class="container position-relative">
-    <h1 data-aos="fade-up">IPY FC – Unity, Pride, Youth</h1>
-    <p class="lead mt-3" data-aos="fade-up" data-aos-delay="200">
-      Official club website for fixtures, news, media, and merchandise
-    </p>
-    <div class="hero-buttons mt-4" data-aos="fade-up" data-aos-delay="400">
-      <a href="fixtures.html" class="btn btn-success me-2">View Fixtures</a>
-      <a href="shop.html" class="btn btn-outline-light">Visit Shop</a>
+    <div class="row justify-content-center">
+      <div class="col-lg-10 text-center">
+        <span class="hero-kicker" data-aos="fade-up">Official IPY FC</span>
+
+        <h1 data-aos="fade-up" data-aos-delay="100">
+          IPY FC — Unity, Pride, Youth
+        </h1>
+
+        <p class="lead mt-3" data-aos="fade-up" data-aos-delay="200">
+          Follow every matchday with live fixtures, latest club news, media highlights, and official merchandise.
+        </p>
+
+        <div class="hero-meta-strip mt-4" data-aos="fade-up" data-aos-delay="300">
+          <span><i class="bi bi-calendar-event"></i> <span id="hero-next-date">Loading date...</span></span>
+          <span><i class="bi bi-geo-alt"></i> <span id="hero-next-venue">Loading venue...</span></span>
+          <span><i class="bi bi-shield"></i> <span id="hero-next-opponent">IPY FC vs Loading...</span></span>
+        </div>
+
+        <div class="hero-buttons mt-4" data-aos="fade-up" data-aos-delay="400">
+          <a href="fixtures.html" class="btn btn-success me-2 mb-2">Next Fixture</a>
+          <a href="news.html" class="btn btn-outline-light mb-2">Latest News</a>
+        </div>
+
+        <div class="hero-stats mt-4" data-aos="fade-up" data-aos-delay="500">
+          <div class="hero-stat">
+            <strong id="hero-stat-played">0</strong>
+            <span>League Matches</span>
+          </div>
+          <div class="hero-stat">
+            <strong id="hero-stat-wins">0</strong>
+            <span>Wins This Season</span>
+          </div>
+          <div class="hero-stat">
+            <strong id="hero-stat-points">0</strong>
+            <span>Points</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-  <!-- 2️⃣ Next Fixture -->
-  <section class="home-section">
-    <div class="container">
-  <h2 class="text-center mb-5">Next Fixture</h2>
+  <!-- 2️⃣ Next Fixture (Dynamic) -->
+<section class="home-section">
+  <div class="container">
+    <h2 class="text-center mb-5">Next Fixture</h2>
 
-  <div class="fixture-card mx-auto text-center">
+    <div class="fixture-card mx-auto text-center">
+      <div class="fixture-teams">
+        <div class="team">
+          <img id="home-next-home-crest" src="assets/img/IPYlogo.jpg" alt="IPY FC">
+          <span>IPY FC</span>
+        </div>
 
-    <div class="fixture-teams">
-      <div class="team">
-        <img src="assets/img/IPYlogo.jpg" alt="IPY FC">
-        <span>IPY FC</span>
+        <div class="vs">VS</div>
+
+        <div class="team">
+          <img id="home-next-away-crest" src="assets/img/IPYlogo.jpg" alt="Opponent">
+          <span id="home-next-away-name">Loading...</span>
+        </div>
       </div>
 
-      <div class="vs">VS</div>
-
-      <div class="team">
-        <img src="assets/img/IPYlogo.jpg" alt="Opponent">
-        <span>Example FC</span>
+      <div class="fixture-details mt-4">
+        <p class="mb-1"><strong id="home-next-date">Loading date...</strong></p>
+        <p class="text-muted" id="home-next-venue">Loading venue...</p>
       </div>
+
+      <a href="fixtures.html" class="btn btn-success mt-3">
+        View Full Fixtures
+      </a>
     </div>
-
-    <div class="fixture-details mt-4">
-      <p class="mb-1"><strong>Saturday 20th April</strong></p>
-      <p class="text-muted">Lucan, Dublin</p>
-    </div>
-
-    <a href="fixtures.html" class="btn btn-success mt-3">
-      View Full Fixtures
-    </a>
-
   </div>
-</div>
-  </section>
+</section>
 
   <!-- 3️⃣ Latest News -->
   <section class="home-section bg-light">
@@ -228,13 +259,8 @@
   <script src="assets/js/main.js"></script>
   <!-- Auth UI Script -->
 <script src="assets/js/authNav.js"></script>
+<script src="assets/js/homeDynamic.js"></script>
 </body>
 </html>
 
-
-
-
-
-</body>
-</html>
 

@@ -99,13 +99,38 @@
         </div>
 
 <button id="submitXI" class="btn btn-success w-100 mt-3" disabled>
-  Submit Starting XI
+  <span class="btn-label">Submit Starting XI</span>
 </button>
 
+<div id="xiStatus" class="alert d-none mt-3 mb-2" role="alert"></div>
 
-        <p class="text-muted small mt-2 mb-0">
-       
-        </p>
+<div class="d-grid gap-2 mt-2">
+  <button id="viewSavedTeamsBtn" class="btn btn-outline-secondary d-none" type="button">
+    <i class="bi bi-list-check me-1"></i> View Saved Teams
+  </button>
+  <button id="buildNewTeamBtn" class="btn btn-outline-success d-none" type="button">
+    <i class="bi bi-arrow-clockwise me-1"></i> Build New XI
+  </button>
+</div>
+
+<div id="savedTeamsWrap" class="card shadow-sm mt-3 d-none">
+  <div class="card-body">
+    <h5 class="mb-3">My Saved Teams</h5>
+    <div class="table-responsive">
+      <table class="table table-sm align-middle">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Formation</th>
+            <th>Players</th>
+            <th>Saved At</th>
+          </tr>
+        </thead>
+        <tbody id="savedTeamsBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
       </div>
     </div>
   </div>

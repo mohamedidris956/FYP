@@ -2771,3 +2771,123 @@ body.fanhub-lock .fanhub-composer {
 .news-admin-actions .btn {
   min-width: 72px;
 }
+
+/* =========================
+   Home Hero v2 - Matchday First
+   ========================= */
+.home-hero {
+  position: relative;
+  min-height: 76vh;
+  padding: 120px 0 90px;
+  color: #fff;
+  background:
+    linear-gradient(120deg, rgba(6, 36, 16, 0.84), rgba(10, 127, 41, 0.55)),
+    url("../img/home.jpg") center/cover no-repeat;
+  overflow: hidden;
+}
+
+.home-hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.10), transparent 45%);
+  pointer-events: none;
+}
+
+.home-hero .container {
+  z-index: 2;
+}
+
+.home-hero .hero-kicker {
+  display: inline-block;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+.home-hero h1 {
+  margin-top: 18px;
+  margin-bottom: 0;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #fff;
+}
+
+.home-hero .lead {
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.hero-meta-strip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.hero-meta-strip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.92rem;
+}
+
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.hero-stat {
+  min-width: 170px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(3px);
+}
+
+.hero-stat strong {
+  display: block;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.hero-stat span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.home-hero .btn-outline-light {
+  border-width: 2px;
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    min-height: auto;
+    padding: 96px 0 70px;
+  }
+
+  .hero-meta-strip span {
+    font-size: 0.84rem;
+    padding: 9px 12px;
+  }
+
+  .hero-stat {
+    min-width: 145px;
+  }
+}
