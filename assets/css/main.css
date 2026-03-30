@@ -2891,3 +2891,21 @@ body.fanhub-lock .fanhub-composer {
     min-width: 145px;
   }
 }
+
+/* Media goal cards: keep caption area aligned and equal height */
+.media-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.media-card .media-meta {
+  min-height: 74px; /* keeps badge + caption area consistent */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.media-card .media-meta small {
+  line-height: 1.35;
+}

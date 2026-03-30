@@ -40,6 +40,7 @@
         <li><a href="team.html">Team</a></li>
         <li><a href="news.html">News</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="fanhub.html">Fan Hub</a></li>
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
@@ -68,7 +69,6 @@
   <button class="btn btn-outline-success active" data-filter="all">All</button>
   <button class="btn btn-outline-success" data-filter="photo">Photos</button>
   <button class="btn btn-outline-success" data-filter="video">Videos</button>
-  <button class="btn btn-outline-success" data-filter="highlights">Match Highlights</button>
   <button class="btn btn-outline-success" data-filter="goals">Goals</button>
   <button class="btn btn-outline-success" data-filter="matchday">Matchday</button>
   <button class="btn btn-outline-success" data-filter="bts">Behind-the-scenes</button>
@@ -204,42 +204,31 @@
   </div>
 </div>
 
-  <!-- Coming Soon: Recent Match Highlight 1 -->
-  <div class="col-sm-6 col-lg-4 media-item" data-type="highlight" data-tags="highlights">
-    <div class="card shadow-sm border-0">
-      <div class="media-coming-soon">
-        <i class="bi bi-camera-reels-fill"></i>
-        <p class="mb-0">Highlight Coming Soon</p>
-      </div>
-      <div class="card-body text-center">
-        <h6 class="fw-bold mb-1">Recent Match Highlight #1</h6>
-        <small class="text-muted">Footage will be uploaded soon</small>
-      </div>
-    </div>
-  </div>
-
-  <!-- Coming Soon: Recent Match Highlight 2 -->
-  <div class="col-sm-6 col-lg-4 media-item" data-type="highlight" data-tags="highlights">
-    <div class="card shadow-sm border-0">
-      <div class="media-coming-soon">
-        <i class="bi bi-camera-reels-fill"></i>
-        <p class="mb-0">Highlight Coming Soon</p>
-      </div>
-      <div class="card-body text-center">
-        <h6 class="fw-bold mb-1">Recent Match Highlight #2</h6>
-        <small class="text-muted">Footage will be uploaded soon</small>
-      </div>
-    </div>
-  </div>
-
-  <!-- Videos -->
-  <div class="col-sm-6 col-lg-4 media-item" data-type="video" data-tags="bts">
-    <div class="media-card" data-src="assets/img/video/homekitreveal.mp4" data-media="video">
+    <!-- Goal 1: Aimon vs Ronanstown FC 2nds -->
+  <div class="col-sm-6 col-lg-4 media-item" data-type="goal" data-tags="goals matchday">
+    <div class="media-card" data-src="assets/img/video/goal1vsron.mp4" data-media="video">
       <video class="media-thumb media-thumb-video" muted preload="metadata">
-        <source src="assets/img/video/homekitreveal.mp4" type="video/mp4">
+        <source src="assets/img/video/goal1vsron.mp4" type="video/mp4">
       </video>
       <div class="media-play"><i class="bi bi-play-circle-fill"></i></div>
-      <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Video • BTS</span></div>
+      <div class="media-meta">
+        <span class="badge bg-dark-subtle text-dark">Video • Goal</span>
+        <small class="d-block mt-1">Aimon is the goalscorer against Ronanstown FC 2nds</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Goal 2: Muneeb vs Ronanstown FC 2nds -->
+  <div class="col-sm-6 col-lg-4 media-item" data-type="goal" data-tags="goals matchday">
+    <div class="media-card" data-src="assets/img/video/goal3vsron.mp4" data-media="video">
+      <video class="media-thumb media-thumb-video" muted preload="metadata">
+        <source src="assets/img/video/goal3vsron.mp4" type="video/mp4">
+      </video>
+      <div class="media-play"><i class="bi bi-play-circle-fill"></i></div>
+      <div class="media-meta">
+        <span class="badge bg-dark-subtle text-dark">Video • Goal</span>
+        <small class="d-block mt-1">Muneeb is the goalscorer against Ronanstown FC 2nds</small>
+      </div>
     </div>
   </div>
 
@@ -273,14 +262,24 @@
     </div>
   </div>
 <div class="col-sm-6 col-lg-4 media-item" data-type="goal" data-tags="goals matchday">
-    <div class="media-card" data-src="assets/img/video/zaheergoal.mp4" data-media="video">
-      <video class="media-thumb media-thumb-video" muted preload="metadata">
-        <source src="assets/img/video/zaheergoal.mp4" type="video/mp4">
-      </video>
-      <div class="media-play"><i class="bi bi-play-circle-fill"></i></div>
-      <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Video • Goal</span></div>
-       </div>
-        </div>
+  <div class="media-card" data-src="assets/img/video/zaheergoal.mp4" data-media="video">
+    <video class="media-thumb media-thumb-video" muted preload="metadata">
+      <source src="assets/img/video/zaheergoal.mp4" type="video/mp4">
+    </video>
+    <div class="media-play"><i class="bi bi-play-circle-fill"></i></div>
+    <div class="media-meta">
+      <span class="badge bg-dark-subtle text-dark">Video • Goal</span>
+      <small class="d-block mt-1">Zaheer is the goalscorer against Dunshaughlin Youths FC 2nds</small>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-6 col-lg-4 media-item" data-type="photo" data-tags="interview">
+  <div class="media-card" data-src="assets/img/media/AimonQuote.jpg" data-media="photo">
+    <img src="assets/img/media/AimonQuote.jpg" alt="Aimon Quote" class="media-thumb">
+    <div class="media-meta"><span class="badge bg-dark-subtle text-dark">Photo • Interview</span></div>
+  </div>
+</div>
       </div>
     </div>
   </section>

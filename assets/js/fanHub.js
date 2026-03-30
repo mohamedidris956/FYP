@@ -7,11 +7,36 @@ const typingEl = document.getElementById("typingIndicator");
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 const pinnedBannerEl = document.getElementById("pinnedAnnouncement");
 
-if (!token) window.location.href = "login.html";
+function showLoginRequiredState() {
+  if (messagesEl) {
+    messagesEl.innerHTML = `
+      <div class="alert alert-info text-center my-3" role="alert">
+        Please log in to access Fan Hub chat.
+        <a href="login.html" class="alert-link ms-1">Go to Login</a>
+      </div>
+    `;
+  }
+
+  if (typingEl) typingEl.textContent = "";
+  if (errorEl) errorEl.textContent = "";
+
+  if (inputEl) {
+    inputEl.value = "";
+    inputEl.disabled = true;
+    inputEl.placeholder = "Log in to join the conversation";
+  }
+
+  if (formEl) {
+    const sendBtn = formEl.querySelector('button[type="submit"]');
+    if (sendBtn) sendBtn.disabled = true;
+  }
+}
 
 // Safety guard (prevents null errors if script loads on wrong page)
 if (!messagesEl || !formEl || !inputEl || !errorEl) {
   console.error("FanHub elements not found on page.");
+} else if (!token) {
+  showLoginRequiredState();
 } else {
   let currentMessages = [];
   let currentUser = { id: null, role: "user" };

@@ -100,6 +100,7 @@ socket.on("fanhub:react", async ({ messageId, emoji } = {}) => {
 });
 
 // Pin/unpin message (admin only)
+// Rule: only ONE message can be pinned at a time.
 socket.on("fanhub:pin", async ({ messageId, pin } = {}) => {
   try {
     if (socket.user.role !== "admin") {
@@ -110,16 +111,33 @@ socket.on("fanhub:pin", async ({ messageId, pin } = {}) => {
     const msg = await FanMessage.findById(messageId);
     if (!msg) return;
 
+    // If pinning this message, unpin all other currently pinned messages first
+    if (pin) {
+      await FanMessage.updateMany(
+        { pinned: true, _id: { $ne: msg._id } },
+        { $set: { pinned: false, pinnedAt: null, pinnedBy: null } }
+      );
+    }
+
+    // Apply pin/unpin to selected message
     msg.pinned = !!pin;
     msg.pinnedAt = pin ? new Date() : null;
     msg.pinnedBy = pin ? socket.user._id : null;
     await msg.save();
 
-    const full = await FanMessage.findById(msg._id)
+    // Broadcast full refreshed history so all clients instantly reflect
+    // removed old pins + new pin state.
+    const history = await FanMessage.find({})
+      .sort({ createdAt: -1 })
+      .limit(120)
       .populate("user", "name role")
       .lean();
 
-    io.emit("fanhub:updated", sanitizeOutgoingMessage(full));
+    const normalized = history
+      .map(sanitizeOutgoingMessage)
+      .reverse();
+
+    io.emit("fanhub:history", normalized);
   } catch (err) {
     console.error("Pin error:", err.message);
     socket.emit("fanhub:error", { message: "Could not update pin" });
