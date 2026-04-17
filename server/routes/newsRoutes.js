@@ -71,6 +71,35 @@ function normalizeArticlePayload(payload = {}) {
   };
 }
 
+function validateNormalizedContent(res, normalized = {}) {
+  const title = String(normalized.title || "").trim();
+  const summary = String(normalized.summary || "").trim();
+  const body = String(normalized.body || "").trim();
+  const slug = String(normalized.slug || "").trim();
+
+  if (title.length < 3 || title.length > 140) {
+    res.status(400).json({ message: "Title must be between 3 and 140 characters." });
+    return false;
+  }
+
+  if (summary.length < 10 || summary.length > 220) {
+    res.status(400).json({ message: "Summary must be between 10 and 220 characters." });
+    return false;
+  }
+
+  if (body.length < 20 || body.length > 12000) {
+    res.status(400).json({ message: "Article body must be between 20 and 12000 characters." });
+    return false;
+  }
+
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+    res.status(400).json({ message: "Slug must contain lowercase letters, numbers, and hyphens only." });
+    return false;
+  }
+
+  return true;
+}
+
 // Public: list published news
 router.get("/", async (req, res) => {
   try {

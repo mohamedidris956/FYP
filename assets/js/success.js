@@ -1,4 +1,9 @@
-const API_BASE_URL = "http://localhost:5001";
+const API_BASE =
+  localStorage.getItem("apiBaseUrl") ||
+  window.__API_BASE_URL ||
+  "";
+
+const buildApiUrl = (path) => `${API_BASE}${path}`;
 
 function setStatus(message, type = "info") {
   const statusEl = document.getElementById("orderStatus");
@@ -30,7 +35,7 @@ async function loadOrder(retries = 12) {
   setStatus("Finalizing payment and loading your order…", "info");
 
   try {
-    const res = await fetch(`${API_BASE_URL}/api/checkout/order/${sessionId}`, {
+    const res = await fetch(buildApiUrl(`/api/checkout/order/${sessionId}`), {
       headers: {
         Authorization: `Bearer ${token}`
       }
