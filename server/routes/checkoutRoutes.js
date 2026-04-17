@@ -165,4 +165,21 @@ router.get('/order/:sessionId', protect, async (req, res) => {
   }
 });
 
+// =======================
+// Get Current User Order History
+// =======================
+router.get('/history', protect, async (req, res) => {
+  try {
+    const orders = await Order.find({ user: req.user._id })
+      .sort({ createdAt: -1 })
+      .select('items totalAmount paymentStatus stripeSessionId createdAt updatedAt')
+      .lean();
+
+    res.json(orders);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;

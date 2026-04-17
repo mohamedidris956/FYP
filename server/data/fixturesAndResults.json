@@ -145,37 +145,37 @@
 
     {
       "opponent": "AFC Belgrave",
-      "date": null,
+      "date": "2026-04-04T14:00:00.000Z",
       "venue": "Airlie Heights",
-      "kickOff": "TBA",
-      "result": ""
+      "kickOff": "14:00",
+      "result": "4-1"
     },
     {
       "opponent": "Clondalkin Celtic",
-      "date": null,
+      "date": "2026-04-18T14:00:00.000Z",
       "venue": "Airlie Heights",
-      "kickOff": "TBA",
+      "kickOff": "14:00",
       "result": ""
     },
     {
       "opponent": "Phibsboro Club de Futbol 2nds",
-      "date": null,
-      "venue": "John Paul 2nd Park, Cabra",
-      "kickOff": "TBA",
-      "result": ""
+      "date": "2026-04-11T14:00:00.000Z",
+      "venue": "Airlie Heights",
+      "kickOff": "14:00",
+      "result": "2-1"
     },
     {
       "opponent": "St Maelruans FC",
-      "date": null,
+      "date": "2026-04-25T14:00:00.000Z",
       "venue": "Bancroft Park, Tallaght",
-      "kickOff": "TBA",
+      "kickOff": "14:00",
       "result": ""
     },
     {
       "opponent": "Stedfast United 2nds",
-      "date": null,
+      "date": "2026-05-02T14:00:00.000Z",
       "venue": "Ballylly Hill",
-      "kickOff": "TBA",
+      "kickOff": "14:00",
       "result": ""
     }
   ]

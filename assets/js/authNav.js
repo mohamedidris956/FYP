@@ -41,14 +41,18 @@ role === "admin"
     </div>
   `;
 
-  // Add Cart button ONLY on shop.html
-  if (window.location.pathname.includes("shop.html")) {
+  // Add Shop actions on commerce pages
+  const commercePaths = ["shop.html", "cart.html", "checkout.html", "success.html", "orders.html"];
+  const isCommercePage = commercePaths.some((path) => window.location.pathname.includes(path));
+
+  if (isCommercePage) {
     html = `
       <div class="d-flex flex-column align-items-end text-end">
         <span class="mb-1">Welcome, ${name}</span>
         <button class="btn btn-success mb-2" onclick="logoutUser()">Logout</button>
         ${adminBtn}
         <a href="cart.html" class="btn btn-outline-success mb-2">🛒 Cart</a>
+        <a href="orders.html" class="btn btn-outline-success mb-2">💳 Payment History</a>
       </div>
     `;
   }

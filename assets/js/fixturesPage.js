@@ -100,13 +100,13 @@ function sortByDateDesc(a, b) {
 function renderNextFixture(fixtures) {
   const todayStart = getTodayStart();
 
-const upcoming = fixtures
-  .filter((f) => {
-    if (f.hasResult) return false;
-    if (!f.date) return true; // TBA still upcoming
-    return f.date >= todayStart; // only future/today dated fixtures
-  })
-  .sort(sortByDateAsc);
+  const upcoming = fixtures
+    .filter((f) => {
+      if (f.hasResult) return false;
+      if (!f.date) return true; // TBA still upcoming
+      return f.date >= todayStart; // only future/today dated fixtures
+    })
+    .sort(sortByDateAsc);
 
   const next = upcoming[0] || { opponent: "TBA", venue: "To Be Confirmed", date: null };
 
@@ -184,13 +184,13 @@ function renderFullResults(fixtures) {
 
   const todayStart = getTodayStart();
 
-const results = fixtures
-  .filter((f) => {
-    if (!f.hasResult) return false;
-    if (!f.date) return true;
-    return f.date <= todayStart;
-  })
-  .sort(sortByDateDesc);
+  const results = fixtures
+    .filter((f) => {
+      if (!f.hasResult) return false;
+      if (!f.date) return true;
+      return f.date <= todayStart;
+    })
+    .sort(sortByDateDesc);
 
   tbody.innerHTML = results.map((f) => `
     <tr>
@@ -215,10 +215,22 @@ const results = fixtures
 
 async function loadFixturesAndResults() {
   try {
-    const response = await fetch("/api/fixtures");
-    if (!response.ok) throw new Error(`Fixtures request failed: ${response.status}`);
-
-    const fixtures = await response.json();
+    let fixtures = [];
+    try {
+      const response = await fetch("/api/fixtures");
+      if (!response.ok) throw new Error(`Fixtures request failed: ${response.status}`);
+      fixtures = await response.json();
+    } catch (apiError) {
+      console.warn("Primary fixtures API unavailable, trying JSON fallback:", apiError);
+      const fallbackResponse = await fetch("/server/data/fixturesAndResults.json");
+      if (!fallbackResponse.ok) {
+        throw new Error(`Fixtures fallback failed: ${fallbackResponse.status}`);
+      }
+      const fallbackPayload = await fallbackResponse.json();
+      fixtures = Array.isArray(fallbackPayload)
+        ? fallbackPayload
+        : (Array.isArray(fallbackPayload?.fixtures) ? fallbackPayload.fixtures : []);
+    }
     if (!Array.isArray(fixtures)) return;
 
     const normalized = fixtures.map(normalizeFixture);
@@ -261,7 +273,6 @@ function dedupeLeagueRows(rows) {
     const canonicalName = normalizeTeamName(row.team);
     const current = byTeam.get(canonicalName);
 
-    // Keep the row with higher points (or latest if tied)
     if (!current || Number(row.pts ?? 0) >= Number(current.pts ?? 0)) {
       byTeam.set(canonicalName, { ...row, team: canonicalName });
     }
@@ -290,11 +301,9 @@ async function loadLeague() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Existing page loads
   loadFixturesAndResults();
   loadLeague();
 
-  // Collapse toggle button text handling
   const fixturesCollapse = document.getElementById("full-fixtures-collapse");
   const resultsCollapse = document.getElementById("full-results-collapse");
   const fixturesBtn = document.getElementById("toggleFixturesBtn");

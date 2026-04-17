@@ -1,12 +1,30 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const router = express.Router();
 const Fixture = require('../models/Fixture');
 const { protect, admin } = require('../middleware/authMiddleware');
 
+function readFixturesFromJson() {
+  const dataPath = path.join(__dirname, '..', 'data', 'fixturesAndResults.json');
+  const raw = fs.readFileSync(dataPath, 'utf8');
+  const parsed = JSON.parse(raw);
+
+  const fixtures = Array.isArray(parsed) ? parsed : parsed.fixtures;
+  return Array.isArray(fixtures) ? fixtures : [];
+}
+
 // Get all fixtures
 router.get('/', async (req, res) => {
-  const fixtures = await Fixture.find();
-  res.json(fixtures);
+  try {
+    const fixtures = readFixturesFromJson();
+    return res.json(fixtures);
+  } catch (jsonError) {
+    console.error('Failed to read fixtures from JSON:', jsonError.message);
+    return res.status(500).json({
+      message: 'Unable to load fixtures from JSON data file.'
+    });
+  }
 });
 
 // Add a fixture (Admin only)

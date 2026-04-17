@@ -153,6 +153,10 @@ socket.on("fanhub:pin", async ({ messageId, pin } = {}) => {
     socket.broadcast.emit("fanhub:stop-typing", { name: socket.user.name });
   });
 
+  socket.on("disconnect", () => {
+    socket.broadcast.emit("fanhub:stop-typing", { name: socket.user.name });
+  });
+
     try {
 const history = await FanMessage.find({})
   .sort({ createdAt: -1 })

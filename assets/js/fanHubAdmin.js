@@ -7,11 +7,9 @@ const logsEl = document.getElementById("modLogsBody");
 const exportBtn = document.getElementById("exportLogsBtn");
 
 if (!token) window.location.href = "login.html";
-if (role !== "admin") window.location.href = "index.html";
+if (token && role !== "admin") window.location.href = "index.html";
 
-if (!bodyEl || !errorEl) {
-  console.error("Fan Hub admin elements not found on page.");
-}
+const hasAdminAccess = Boolean(token) && role === "admin";
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -159,34 +157,40 @@ function exportLogsCSV() {
     });
 }
 
-if (exportBtn) {
-  exportBtn.addEventListener("click", exportLogsCSV);
-}
+if (hasAdminAccess) {
+  if (!bodyEl || !errorEl) {
+    console.error("Fan Hub admin elements not found on page.");
+  }
 
-if (bodyEl) {
-  bodyEl.addEventListener("click", async (e) => {
-    const muteBtn = e.target.closest(".mute-btn");
-    const unmuteBtn = e.target.closest(".unmute-btn");
+  if (exportBtn) {
+    exportBtn.addEventListener("click", exportLogsCSV);
+  }
 
-    try {
-      if (muteBtn) {
-        const reason = prompt("Reason for mute (optional):", "") || "";
-        await muteUser(muteBtn.dataset.id, 10, reason);
-        await refresh();
-        return;
+  if (bodyEl) {
+    bodyEl.addEventListener("click", async (e) => {
+      const muteBtn = e.target.closest(".mute-btn");
+      const unmuteBtn = e.target.closest(".unmute-btn");
+
+      try {
+        if (muteBtn) {
+          const reason = prompt("Reason for mute (optional):", "") || "";
+          await muteUser(muteBtn.dataset.id, 10, reason);
+          await refresh();
+          return;
+        }
+        if (unmuteBtn) {
+          const reason = prompt("Reason for unmute (optional):", "") || "";
+          await unmuteUser(unmuteBtn.dataset.id, reason);
+          await refresh();
+          return;
+        }
+      } catch (err) {
+        errorEl.textContent = err.message;
       }
-      if (unmuteBtn) {
-        const reason = prompt("Reason for unmute (optional):", "") || "";
-        await unmuteUser(unmuteBtn.dataset.id, reason);
-        await refresh();
-        return;
-      }
-    } catch (err) {
-      errorEl.textContent = err.message;
-    }
-  });
-}
+    });
+  }
 
-if (bodyEl && errorEl) {
-  refresh();
+  if (bodyEl && errorEl) {
+    refresh();
+  }
 }

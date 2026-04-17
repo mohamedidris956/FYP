@@ -129,13 +129,24 @@
 
   async function loadHomeData() {
     try {
-      const [fixturesRes, leagueRes] = await Promise.all([
-        fetch("/api/fixtures"),
-        fetch("/api/league")
-      ]);
+      const leaguePromise = fetch("/api/league").catch(() => null);
+      const fixturesPromise = fetch("/api/fixtures").catch(() => null);
+      const [fixturesRes, leagueRes] = await Promise.all([fixturesPromise, leaguePromise]);
 
-      const fixturesData = fixturesRes.ok ? await fixturesRes.json() : [];
-      const leagueData = leagueRes.ok ? await leagueRes.json() : [];
+      let fixturesData = [];
+      if (fixturesRes && fixturesRes.ok) {
+        fixturesData = await fixturesRes.json();
+      } else {
+        console.warn("Primary fixtures API unavailable on home page, trying JSON fallback.");
+        const fallbackRes = await fetch("/server/data/fixturesAndResults.json");
+        if (fallbackRes.ok) {
+          const fallbackPayload = await fallbackRes.json();
+          fixturesData = Array.isArray(fallbackPayload)
+            ? fallbackPayload
+            : (Array.isArray(fallbackPayload?.fixtures) ? fallbackPayload.fixtures : []);
+        }
+      }
+      const leagueData = leagueRes && leagueRes.ok ? await leagueRes.json() : [];
 
       const fixtures = Array.isArray(fixturesData)
         ? fixturesData.map(normalizeFixture)

@@ -41,6 +41,7 @@ if (!messagesEl || !formEl || !inputEl || !errorEl) {
   let currentMessages = [];
   let currentUser = { id: null, role: "user" };
   let typingTimeout = null;
+  let typingIndicatorTimeout = null;
   let isTypingSent = false;
 
   function syncHeaderHeightVar() {
@@ -169,11 +170,12 @@ function renderMessages(messages) {
   updatePinnedBanner(ordered); // <- add this line
 }
 
-  // ✅ Initialize socket BEFORE using it
+  // Initialize socket BEFORE using it
   const socket = io({ auth: { token } });
 
   socket.on("fanhub:self", (me) => {
     currentUser = me || currentUser;
+    renderMessages(currentMessages);
   });
 
   socket.on("connect_error", (err) => {
@@ -203,10 +205,15 @@ function renderMessages(messages) {
   socket.on("fanhub:typing", (payload) => {
     const name = payload?.name || "Someone";
     if (typingEl) typingEl.textContent = `${name} is typing...`;
+    clearTimeout(typingIndicatorTimeout);
+    typingIndicatorTimeout = setTimeout(() => {
+      if (typingEl) typingEl.textContent = "";
+    }, 2000);
   });
 
   socket.on("fanhub:stop-typing", () => {
     if (typingEl) typingEl.textContent = "";
+    clearTimeout(typingIndicatorTimeout);
   });
 
   inputEl.addEventListener("input", () => {
