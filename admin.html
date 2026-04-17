@@ -4,11 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Dashboard | IPY FC</title>
+  <link href="assets/img/IPYlogo.jpg" rel="icon" />
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
   <link href="assets/css/main.css" rel="stylesheet" />
 </head>
 <body>
-  <div class="container py-5">
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <img src="assets/img/IPYlogo.jpg" alt="IPY FC Logo" class="img-fluid" style="height: 100px;" />
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="admin.html" class="active">Shop Admin</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div id="authArea" class="d-flex align-items-center"></div>
+    </div>
+  </header>
+
+  <main class="container py-5">
     <h1 class="mb-4">Admin Dashboard - Shop Products</h1>
 
     <form id="productForm" class="card card-body mb-4">
@@ -54,8 +75,11 @@
         </table>
       </div>
     </div>
-  </div>
+  </main>
 
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/authNav.js"></script>
   <script src="assets/js/admin.js"></script>
 </body>
 </html>

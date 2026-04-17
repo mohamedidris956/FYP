@@ -1,32 +1,124 @@
-This project is a final–year web development assignment built for IPY FC, showcasing a prototype football club website.
-It includes pages for fixtures, news, team profiles, media gallery, merchandise shop, and a working user authentication system.
-The website allows users to register, log in, and access protected features such as adding items to their shopping cart.
-The backend provides secure authentication, and the frontend delivers a clean, responsive interface suitable for real–world club use.
+# IPY FC Website (Final Year Project)
 
-How to Set Up the Project
-1. Download or Clone the Project
-Download the project folder or clone it from your repository so you have both the frontend and backend files on your computer.
-2. Install the Backend Dependencies
-The backend requires Node.js.
-Inside the backend folder, install all required packages:
-3. Create a .env File for Backend Configuration
-Inside the backend folder, create a .env file containing:
-Your MongoDB connection link
-A secret key for JWT
-The port number you want the backend to run on
-This allows the backend to connect to your database and generate login tokens.
-4. Start the Backend Server
-Start the backend by running the server command in the backend folder.
-This will make the API available on your computer so the website can log in, register, and authenticate users.
-5. Open the Frontend
-The frontend requires no installation.
-Simply open the project in VS Code (or any editor) and launch index.html using Live Server.
-This will load the website in your browser, normally on:
-http://127.0.0.1:5500
-6. Test the Features
-Register a new account
-Log in
-See the navbar update
-Add items to the cart
-View media, fixtures, news, and team pages
-Log out when finished
+This project is a final-year web development assignment for **IPY FC**. It is a full-stack football club website with public pages (fixtures, news, media, team, fan hub, shop) and backend-powered features such as user registration, login, authentication, cart/checkout, and admin-related content management.
+
+---
+
+## Project Structure
+
+- **Frontend (static pages):** root folder (`index.html`, `shop.html`, `news.html`, etc.)
+- **Backend API:** `server/` (Node.js + Express + MongoDB)
+
+---
+
+## Prerequisites
+
+Install these before running the project:
+
+1. **Git** (to clone/download code)
+2. **Node.js (LTS recommended)** and **npm**
+3. **MongoDB connection** (local MongoDB or MongoDB Atlas)
+4. **VS Code** + optional **Live Server extension**
+
+---
+
+## Setup Guide (From Scratch)
+
+### 1) Download the project
+
+Option A — clone with Git:
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+cd FYP
+```
+
+Option B — download ZIP from GitHub, extract it, then open the extracted `FYP` folder.
+
+---
+
+### 2) Install backend dependencies
+
+From the project root:
+
+```bash
+cd server
+npm install
+```
+
+---
+
+### 3) Create backend environment variables (`.env`)
+Create a file at:
+
+```text
+server/.env
+```
+
+Add at least:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_strong_jwt_secret
+PORT=5000
+CORS_ORIGINS=http://127.0.0.1:5500,http://localhost:5500
+CLIENT_URL=http://127.0.0.1:5500
+```
+
+If you want to test Stripe checkout/webhooks, also add:
+
+```env
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+```
+
+---
+
+### 4) Start the backend server
+
+In `server/`:
+
+```bash
+npm run dev
+```
+
+or
+
+```bash
+npm start
+```
+
+The API should run on:
+
+- `http://localhost:5000` (or your `PORT` value)
+
+---
+
+### 5) Run/open the frontend
+
+From the project root (`FYP/`):
+
+- Open the folder in VS Code.
+- Open `index.html` using **Live Server** (recommended), or open the file directly in your browser.
+
+Typical Live Server URL:
+
+- `http://127.0.0.1:5500`
+
+## Useful Backend Scripts
+
+Run from `server/`:
+
+```bash
+npm run dev        # Start backend with nodemon
+npm start          # Start backend normally
+npm test           # Run backend tests
+```
+
+---
+
+## Important Notes
+
+- 
+- If cloning to a new machine from GitHub, you must recreate `server/.env` manually.
+- If auth fails, first verify `MONGO_URI` and `JWT_SECRET` are set correctly.
